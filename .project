@@ -5,6 +5,14 @@
 	<projects>
 	</projects>
 	<buildSpec>
+<<<<<<< HEAD
+=======
+		<buildCommand>
+			<name>com.eclipsesource.jshint.ui.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+>>>>>>> refs/remotes/origin/master
 	</buildSpec>
 	<natures>
 		<nature>org.nodeclipse.ui.NodeNature</nature>
