@@ -26,104 +26,117 @@
 	    </div>
 	  </div>
 	</nav>
-    <div class="heading">
-    	<p>Welcome to our bad movie ranking system!</p>
-    	<p> final project!</p> 
-    </div>
-    <div id="leftnav">
-	<form id="typeSelectForm" action="/getType" method="get" style="float:center">
-    <% for(var i=0; i<genres.length; i++) {%>
-		<div class="leftlist">
-     	<input class="button" type="submit" value="<%= genres[i]%>">
-    </div>
-		<% } %>
-	</form>
+    <div id="section">
+	    <div id="leftnav">
+		<form id="typeSelectForm" name='selectGenre' action="/getGenre" method="get" style="float:center">
+			<div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Action'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Adventure'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Animation'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Comedy'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Crime'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Documentary'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Drama'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Family'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Fantasy'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Foreign'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'History'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Horror'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Kid'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Music'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Mystery'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Romance'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Science Fiction'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Thriller'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'TV Movie'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'War'%>">
+		    </div>
+		    <div class="leftlist">
+		    <input class="button" name="g" type="submit" value="<%= 'Western'%>">
+		    </div>
+		</form>
 	</div>
 	<div id="section">
-		<% if (results == null) { %>
+		<% if(results==null){ %>
+		<p> result null!</p>
     	<div class="row">
-        <div class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            <img src="image/m1.jpg" alt="..." style="width:160px;height:228px;">
-              <div class="caption">
-              <h3>Thumbnail label</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-              </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            <img src="/image/m2.jpg" alt="..." style="width:160px;height:228px;">
-              <div class="caption">
-              <h3>Thumbnail label</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-              </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            <img src="http://image.tmdb.org/t/p/original/ofUIEJxt8pQQ4k2AIqsYKhcttn2.jpg" alt="..." style="width:160px;height:228px;">
-              <div class="caption">
-              <h3>Thumbnail label</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-              </div>
-          </div>
-        </div>  
-    </div>
-    <% } 
-    else { %>
-				<% for(var i=0; i<results.length; i++) { %>
-					<p><%= results[i] %></p>
-          <div class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            <img src="<%=results[i].poster%>" alt="..." style="width:160px;height:228px;">
-              <div class="caption">
-              <h3><%= results[i].movie_name%></h3>
-              <p><%= results[i].overview%></p>
-              <p><button class="btn btn-primary" type="submit" value="Bad">Bad</button>
-                 <a href="/movie_details" class="btn btn-default" role="button">Read more</a></p>
-              </div>
-          </div>
-        </div>
-			<% } %>
-	<% } %>	
-	
-	
-  		<div class="row">
-  			<div class="col-sm-6 col-md-4">
-    			<div class="thumbnail">
-      			<img src="image/m1.jpg" alt="..." style="width:160px;height:228px;">
-      				<div class="caption">
-        			<h3>Thumbnail label</h3>
-        			<p>...</p>
-        			<p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-      				</div>
+        	<div class="col-sm-6 col-md-4">
+          		<div class="thumbnail">
+            		<img src="image/m1.jpg" alt="..." style="width:160px;height:228px;">
+			        	<div class="caption">
+			        	<h3>Thumbnail label</h3>
+			          	<p>...</p>
+			        	<p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
+			        	</div>
+          			</div>
+        		</div>
+    		</div>
+    	</div>	
+    	<% } 
+    	else { %>
+    		<% for(var i=0; i<results.length; i++) { %>
+    		<% if(i%4==0 && i!=0) { %>
     			</div>
-  			</div>
-  			<div class="col-sm-6 col-md-4">
-    			<div class="thumbnail">
-      			<img src="/image/m2.jpg" alt="..." style="width:160px;height:228px;">
-      				<div class="caption">
-        			<h3>Thumbnail label</h3>
-        			<p>...</p>
-        			<p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-      				</div>
-    			</div>
-  			</div>
-  			<div class="col-sm-6 col-md-4">
-    			<div class="thumbnail">
-      			<img src="http://image.tmdb.org/t/p/original/ofUIEJxt8pQQ4k2AIqsYKhcttn2.jpg" alt="..." style="width:160px;height:228px;">
-      				<div class="caption">
-        			<h3>Thumbnail label</h3>
-        			<p>...</p>
-        			<p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-      				</div>
-    			</div>
-  			</div>	
-		</div>	
+            	<% } %>	
+    		<% if(i%4==0) { %>
+    			<div class="row">
+            <% } %>	
+            		<div class="col-sm-6 col-md-3">
+	              		<div class="thumbnail">
+	              			<% var poster=results[i].poster.replace(/"/g, "") %>
+		              		<img src=<%= poster %>  alt="..." style="width:160px;height:228px;">
+		                  	<div class="caption">
+		                  		<h3><%= results[i].title.replace(/"/g, "")%></h3>
+		                    	<!-- <div class ="overview">
+		                    		<p><%= results[i].overview%></p>
+		                    	</div>> -->
+		                    	<p><button class="btn btn-primary" type="submit" value="Bad">Bad</button>
+		                    	<a href="/movie_details" class="btn btn-default" role="button">Read more</a></p>
+		                	</div>
+	            		</div>
+          			</div>
+      			<% } %>
+          	</div>
+		<% } %>	
+
 	</div> 
 </div>
 </body>

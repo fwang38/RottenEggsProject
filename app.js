@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var vote = require('./routes/vote');
+var genres= require('./routes/genres');
 
 var app = express();
 
@@ -27,7 +28,7 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.get('/vote', vote.displayResponse);
-//app.get('/index',index.generateResponse);
+app.get('/getGenre',genres.displayResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
