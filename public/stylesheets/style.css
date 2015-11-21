@@ -88,8 +88,13 @@ float:left;
   transition: .2s;
 }
 
-
 .button {
   min-width: 9em;
 }
 
+.button:active {
+  width: 150px;
+  height: 100px;
+  background:url("/image/egg.png") no-repeat 0 0;
+  background-color:#FFFF00;
+}

@@ -1,143 +1,145 @@
 <!DOCTYPE html>
 <html ng-app>
-  <head>
-    <title>Rotten Egges</title>
-    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-  </head>
-  <body>
-  <div class="jumbotron">
-  <h1>Rotten Eggs</h1>
-  <p>...</p>
-  </div>
-    <nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="/">Rotten Eggs</a>
-	    </div>
-	    <div>
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="/">Home</a></li>
-	        <li><a href="/homepage"> test</a></li>
-	        <li><a href="/???"> Your Account</a></li> 
-	        <li><a href="/???">References</a></li> 
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-    <div id="section">
-	    <div id="leftnav">
-		<form id="typeSelectForm" name='selectGenre' action="/getGenre" method="get" style="float:center">
-			<div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Action'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Adventure'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Animation'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Comedy'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Crime'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Documentary'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Drama'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Family'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Fantasy'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Foreign'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'History'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Horror'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Kid'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Music'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Mystery'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Romance'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Science Fiction'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Thriller'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'TV Movie'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'War'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Western'%>">
-		    </div>
-		</form>
+<head>
+	<title>Rotten Egges</title>
+	<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+	<div class="jumbotron">
+		<h1>Rotten Eggs</h1>
+		<p>...</p>
 	</div>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Rotten Eggs</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/homepage"> test</a></li>
+					<li><a href="/???"> Your Account</a></li> 
+					<li><a href="/???">References</a></li> 
+				</ul>
+			</div>
+		</div>
+	</nav>
 	<div id="section">
-		<% if(results==null){ %>
-		<p> result null!</p>
-    	<div class="row">
-        	<div class="col-sm-6 col-md-4">
-          		<div class="thumbnail">
-            		<img src="image/m1.jpg" alt="..." style="width:160px;height:228px;">
-			        	<div class="caption">
-			        	<h3>Thumbnail label</h3>
-			          	<p>...</p>
-			        	<p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-			        	</div>
-          			</div>
-        		</div>
-    		</div>
-    	</div>	
-    	<% } 
-    	else { %>
-    		<% for(var i=0; i<results.length; i++) { %>
-    		<% if(i%4==0 && i!=0) { %>
-    			</div>
-            	<% } %>	
-    		<% if(i%4==0) { %>
-    			<div class="row">
-            <% } %>	
-            		<div class="col-sm-6 col-md-3">
-	              		<div class="thumbnail">
-	              			<% var poster=results[i].poster.replace(/"/g, "") %>
-		              		<img src=<%= poster %>  alt="..." style="width:160px;height:228px;">
-		                  	<div class="caption">
-		                  		<h3><%= results[i].title.replace(/"/g, "")%></h3>
+		<div id="leftnav">
+			<form id="typeSelectForm" name='selectGenre' action="/getGenre" method="get" style="float:center">
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Action'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Adventure'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Animation'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Comedy'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Crime'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Documentary'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Drama'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Family'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Fantasy'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Foreign'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'History'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Horror'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Kid'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Music'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Mystery'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Romance'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Science Fiction'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Thriller'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'TV Movie'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'War'%>">
+				</div>
+				<div class="leftlist">
+					<input class="button" name="g" type="submit" value="<%= 'Western'%>">
+				</div>
+			</form>
+		</div>
+		<div id="section">
+			<% if(results==null){ %>
+			<p> result null!</p>
+			<div class="row">
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="image/m1.jpg" alt="..." style="width:160px;height:228px;">
+						<div class="caption">
+							<h3>Thumbnail label</h3>
+							<p>...</p>
+							<p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<% } 
+		else { %>
+		<% for(var i=0; i<results.length; i++) { %>
+		<% if(i%4==0 && i!=0) { %>
+	</div>
+	<% } %>	
+	<% if(i%4==0) { %>
+	<div class="row">
+		<% } %>	
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<% var poster=results[i].poster.replace(/"/g, "") %>
+				<img src=<%= poster %>  alt="..." style="width:160px;height:228px;">
+				<div class="caption">
+					<h3><%= results[i].title.replace(/"/g, "")%></h3>
 		                    	<!-- <div class ="overview">
 		                    		<p><%= results[i].overview%></p>
 		                    	</div>> -->
-		                    	<p><button class="btn btn-primary" type="submit" value="Bad">Bad</button>
-		                    	<a href="/movie_details" class="btn btn-default" role="button">Read more</a></p>
-		                	</div>
-	            		</div>
-          			</div>
-      			<% } %>
-          	</div>
-		<% } %>	
+		                    	<form method="get" action="/vote">    	   		
+		                    		<button class="button" type="button" value="Bad">Bad</button>
+		                    	</form>		                    	
+		                    	<a href="/movie_details" class="btn btn-default" role="button">Read more</a>
+		                    </div>
+		                </div>
+		            </div>
+		            <% } %>
+		        </div>
+		        <% } %>	
 
-	</div> 
-</div>
-</body>
-</html>
+		    </div> 
+		</div>
+	</body>
+	</html>
