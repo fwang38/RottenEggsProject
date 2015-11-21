@@ -21,22 +21,27 @@ float:left;
 }
 #section {
   float:left;
-  padding:10px;
+  padding:10px 10px;
 }
 
 .thumbnail {
-  padding:0px;
-  width:300px; height:400px;
+  padding:10px 10px 10px 10px;
+  width:280px; height:340px;
   text-align: center;
-  text-overflow: ellipsis ;
 }
 
-.overview {
-  width:250px;
+#overflow {
+  white-space: nowrap;
+  width: 90%; 
+  font-size: 22px;
+  font-weight: bold;
   height: 50px;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding:10px 10px; 
 }
+
+
 .panel {
   position:relative;
 }
