@@ -48,7 +48,7 @@ function keywordMovie(req, res){
 			    console.log('Error while performing Query.');
 			});
 		//console.log(result);
-		res.render('index',{results:null, resultsmovie:result, resultsperson:resultperson});
+		res.render('index',{results:null, resultsmovie:result, resultsperson:resultperson, user:req.user});
 		connection.end();
 }
 //

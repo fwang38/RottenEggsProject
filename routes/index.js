@@ -6,7 +6,7 @@ var mysql = require('mysql');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index',{results:null, resultperson:null, resultsmovie:null, user:req.user});
+	res.render('index',{results:null, resultsperson:null, resultsmovie:null, user:req.user});
 });
 
 //, resultsperson:null

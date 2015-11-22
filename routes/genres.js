@@ -24,13 +24,14 @@ function generateBadmovies(req,res){
 			        result.push(rows[i]);
 			   }
 			  console.log(result);
-			    res.render('index',{results:result});
+			    res.render('index',{results:result, resultsperson:null, resultsmovie:null, user:req.user});
 		  } 
 		  else
 		    console.log('Error while performing Query.');
 		});
 		connection.end();
 }
+
 
 exports.displayResponse = function(req, res){
 	generateBadmovies(req, res);
