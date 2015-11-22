@@ -24,35 +24,6 @@ function generateBadmovies(req,res){
 			        result.push(rows[i]);
 			   }
 			  console.log(result);
-			    res.render('index',{results:result});
-		  } 
-		  else
-		    console.log('Error while performing Query.');
-		});
-		connection.end();
-}
-function keywordMovie(req, res){
-	var movie=req.query.movie;
-	console.log(req.query.movie);
-	console.log('aa');
-	//console.log(genre);
-	var connection = mysql.createConnection({
-		  host     : 'mydb.c31kdvhm3rfj.us-west-2.rds.amazonaws.com',
-		  user     : 'boliu',
-		  password : 'liubo1678',
-		  database : 'RottenEggs'
-		});
-		var q='SELECT * from movie m where m.title LIKE \''+ movie+'\' limit 25';
-		console.log(q);
-		connection.connect();
-		connection.query(q , function(err, rows, fields) {
-		  if (!err){
-			  console.log('The solution is: ', rows);
-			  var result=[];
-			  for (var i in rows) {
-			        result.push(rows[i]);
-			   }
-			  console.log(result);
 			    res.render('index',{results:result, resultsperson:null, resultsmovie:null, user:req.user});
 		  } 
 		  else
@@ -61,7 +32,7 @@ function keywordMovie(req, res){
 		connection.end();
 }
 
+
 exports.displayResponse = function(req, res){
 	generateBadmovies(req, res);
-	keywordMovie(req, res);
 };
