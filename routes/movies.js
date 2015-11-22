@@ -20,7 +20,6 @@ function generateResponse(req, res) {
 	    results = rows.slice();
 	    res.render('movies.ejs', {results: results});
 	    console.log(results)
-	    //callback(results);
 	   	}
 	  else
 	    console.log('Error while performing Query.');
