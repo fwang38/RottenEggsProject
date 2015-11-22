@@ -1,16 +1,16 @@
 var mysql = require('mysql');
 
 function getResults(req, res, connection, callback) {
-	connection.query('SELECT * from personinfo limit 5', function(err, rows, fields) {
+	console.log(req.user._id);
+	connection.query("INSERT INTO votes (movieid,userid) VALUES(" + "2" + "," + "'" + req.user._id + "'" +")", function(err, rows, fields) {
 		if (!err){
 			console.log('The solution is: ', rows);
 			callback(rows);			
 		}
 		else{
-			console.log('Error while performing Query.');
-			console.log('The solution is: ', rows);
+			console.log('Vote Failed!');
 			res.render('error', {
-				message: "Error while performing Query.",
+				message: 'Vote Failed!',
 				error: err
 			});			
 		}

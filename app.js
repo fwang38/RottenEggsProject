@@ -13,6 +13,7 @@ var login = require('./routes/login');
 var signup = require('./routes/signup');
 
 var genres= require('./routes/genres');
+var movie=require('./routes/movie');
 var persons = require('./routes/persons');
 
 var app = express();
@@ -73,7 +74,7 @@ app.get('/signup', signup);
 app.get('/movies', movies.displayResponse);
 app.get('/persons', persons.displayResponse);
 app.get('/getGenre',genres.displayResponse);
-
+app.get('/getMovies',movie.displayResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
