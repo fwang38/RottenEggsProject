@@ -12,7 +12,7 @@ var mysql      = require('mysql');
 //		}
 //	});
 //};
-//
+
 //function generateResponse(req, res) {
 //	// The url to connect to the mongodb instance
 //	var url = 'mongodb://cis550student:cis550hw3@ds051933.mongolab.com:51933/cis550hw3';
@@ -38,9 +38,22 @@ var mysql      = require('mysql');
 //}
 //
 
+//function getResults(db, callback) {
+//	var cursor =db.collection('business').find({categories:{$in: ['Bars']},city:'Carnegie'});
+//	var results = [];
+//	cursor.each(function(err, doc) {
+//		if (doc != null) {
+//			//console.log(doc);
+//			results.push(doc.name);
+//		} else {
+//			callback(results);
+//		}
+//	});
+//};
+
 exports.displayResponse = function(req, res){
 //	generateResponse(req, res);
-
+	var results = [];
 	var connection = mysql.createConnection({
 	  host     : 'mydb.c31kdvhm3rfj.us-west-2.rds.amazonaws.com',
 	  user     : 'boliu',
@@ -50,9 +63,13 @@ exports.displayResponse = function(req, res){
 
 	connection.connect();
 
-	connection.query('SELECT * from personinfo', function(err, rows, fields) {
-	  if (!err)
+	connection.query('SELECT * from movie WHERE movie_id=12', function(err, rows, fields) {
+	  if (!err){
 	    console.log('The solution is: ', rows);
+	    results = rows.slice();
+	    res.render('homepage.ejs', {results: results});
+	    //callback(results);
+	   	}
 	  else
 	    console.log('Error while performing Query.');
 	});

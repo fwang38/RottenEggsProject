@@ -119,24 +119,18 @@
 
 <div class="row">
  	<div class="col-md-5">
- 	<img src=<%=results[0].poster.replace(/"/g, '')%> class="img-thumbnail" class="img-responsive" ""alt="Cinque Terre" width="304" height="236" style="margin:0px 0px 10px 100px">
+ 	<img src=<%=results[0].profile.replace(/"/g, '')%> class="img-thumbnail" class="img-responsive" ""alt="Cinque Terre" width="304" height="236" style="margin:0px 0px 10px 100px">
  	<p><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
  	<a href="https://twitter.com/share" class="twitter-share-button"{count}>Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>         
  	</div>
  	<div class="col-md-5 col-md-offset-1">
  		<p></p>
- 		<p><%= results[0].title.replace(/"/g, '') %></p>
- 		<p>Released on <%= results[0].releasedate.replace(/"/g, '') %></p>
- 		<p>IMDB Rating <%= results[0].userrating %> 
- 		<div class="imdbrating"></div></p>
- 		
- 		<p>Rotten Tomotoes Rating: PLACEHOLDER FOR RT RATING</p>
- 		<p>Runtime: <%= results[0].runtime %> minutes</p>
+ 		<p>Name: <%= results[0].name.replace(/"/g, '') %></p>
+ 		<p>Date of Birth: <%= results[0].dayofbirth.replace(/"/g, '') %></p>
+ 		<p>Biography: <%= results[0].biography.replace(/"/g, '') %></p>
  		<br>
  		
-
- 		<iframe id ="video" src=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> height="300" width="450" allowfullscreen="" frameborder="0" class="embed-responsive-item"></iframe>
  	</div>   
 </div>
 

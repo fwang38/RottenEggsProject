@@ -14,11 +14,11 @@ function generateResponse(req, res) {
 
 	connection.connect();
 	
-	connection.query("SELECT * from movie m INNER JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id = 13", function(err, rows, fields) {
+	connection.query("SELECT * from personinfo p WHERE personid=12", function(err, rows, fields) {
 	  if (!err){
 	    console.log('The solution is: ', rows);
 	    results = rows.slice();
-	    res.render('movies.ejs', {results: results});
+	    res.render('persons.ejs', {results: results});
 	    console.log(results)
 	    //callback(results);
 	   	}
