@@ -53,10 +53,10 @@ require('./routes/userRoute.js')(app, passport);
 require('./routes/signup.js')(passport);
 require('./routes/login.js')(passport);
 
-//passport.serializeUser(function(user, done) {
-//	done(null, user._id);
-//});
-//	 
+passport.serializeUser(function(user, done) {
+	done(null, user._id);
+});
+	 
 //passport.deserializeUser(function(id, done) {
 //	User.findById(id, function(err, user) {
 //		done(err, user);
