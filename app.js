@@ -7,9 +7,13 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var movies = require('./routes/movies');
 var vote = require('./routes/vote');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
+
+var genres= require('./routes/genres');
+var persons = require('./routes/persons');
 
 var app = express();
 
@@ -61,12 +65,15 @@ require('./routes/login.js')(passport);
 
 app.use('/', routes);
 app.use('/users', users);
-
 app.get('/vote', vote.displayResponse);
 //app.get('/index',index.generateResponse);
 app.get('/login', login);
 app.get('/signup', signup);
-//app.get('/profile',)
+
+app.get('/movies', movies.displayResponse);
+app.get('/persons', persons.displayResponse);
+app.get('/getGenre',genres.displayResponse);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
