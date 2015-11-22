@@ -2,9 +2,9 @@ var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../routes/user.js');
 var flash           = require('connect-flash');
 
+
 //module.exports = router;
 module.exports = function(passport) {
-	
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -37,6 +37,7 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
             // all is well, return successful user
+            
             return done(null, user);
         });
 
