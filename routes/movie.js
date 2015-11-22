@@ -42,13 +42,13 @@ function keywordMovie(req, res){
 				  for (var i in rows) {
 				        resultperson.push(rows[i]);
 				   }
-				  //console.log(resultperson);
+				  console.log(resultperson);
 			  } 
 			  else
 			    console.log('Error while performing Query.');
 			});
 		//console.log(result);
-		res.render('index',{results:result, resultsperson:resultperson});
+		res.render('index',{results:null, resultsmovie:result, resultsperson:resultperson});
 		connection.end();
 }
 //
