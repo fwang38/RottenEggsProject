@@ -28,7 +28,7 @@ function keywordMovie(req, res){
 			  for (var i in rows) {
 			        result.push(rows[i]);
 			   }
-			  console.log(result);
+			  //console.log(result);
 			  
 		  } 
 		  else
@@ -48,10 +48,10 @@ function keywordMovie(req, res){
 			    console.log('Error while performing Query.');
 			});
 		//console.log(result);
-		res.render('index',{results:result});
+		res.render('index',{results:result, resultsperson:resultperson});
 		connection.end();
 }
-//, resultsperson:resultperson
+//
 exports.displayResponse = function(req, res){
 	keywordMovie(req, res);
 };

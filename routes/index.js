@@ -6,7 +6,7 @@ var mysql = require('mysql');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index',{results:null});
+	res.render('index',{results:null,resultperson:null});
 });
 //, resultsperson:null
 router.get('/homepage', function(req, res, next) {
@@ -17,6 +17,5 @@ router.get('/homepage', function(req, res, next) {
 router.get('/comment', function(req, res, next) {
 	res.render('comment', {results: null});
 });
-
 
 module.exports = router;
