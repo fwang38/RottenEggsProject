@@ -8,7 +8,7 @@ var mysql = require('mysql');
 router.get('/', function(req, res, next) {
 	res.render('index',{results:null});
 });
-
+//, resultsperson:null
 router.get('/homepage', function(req, res, next) {
 	
 	res.render('homepage', {results: null});

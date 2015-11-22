@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var vote = require('./routes/vote');
 var genres= require('./routes/genres');
+var movie=require('./routes/movie');
 
 var app = express();
 
@@ -29,7 +30,7 @@ app.use('/users', users);
 
 app.get('/vote', vote.displayResponse);
 app.get('/getGenre',genres.displayResponse);
-
+app.get('/getMovies',movie.displayResponse);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

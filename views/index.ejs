@@ -27,77 +27,90 @@
 	    </div>
 	  </div>
 	</nav>
+	<div id="wrapper">
 
-    <div class="page-wrapper">
-	    <div id="leftnav">
-		<form id="typeSelectForm" name='selectGenre' action="/getGenre" method="get" style="float:center">
-			<div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Action'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Adventure'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Animation'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Comedy'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Crime'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Documentary'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Drama'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Family'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Fantasy'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Foreign'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'History'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Horror'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Kid'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Music'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Mystery'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Romance'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Science Fiction'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Thriller'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'TV Movie'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'War'%>">
-		    </div>
-		    <div class="leftlist">
-		    <input class="button" name="g" type="submit" value="<%= 'Western'%>">
-		    </div>
-		</form>
-	</div>
-	<div id="section">
-		<% if(results==null){ %>
+        <!-- Navigation -->
+        
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                            <form id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get" style="float:center">
+                                <input type="text" name="movie">
+                                <input type=image src="/image/search.jpg"  alt="..." style="width:30px;height:30px;">
+                            </form>
+
+                    <form id="typeSelectForm" name='selectGenre' action="/getGenre" method="get" style="float:center">
+					<div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Action'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Adventure'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Animation'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Comedy'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Crime'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Documentary'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Drama'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Family'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Fantasy'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Foreign'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'History'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Horror'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Kid'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Music'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Mystery'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Romance'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Science Fiction'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Thriller'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'TV Movie'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'War'%>">
+				    </div>
+				    <div class="leftlist">
+				    <input class="button" name="g" type="submit" value="<%= 'Western'%>">
+				    </div>
+				</form>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <% if(results==null){ %>
 		<p> result null!</p>
     	<div class="row">
         	<div class="col-sm-6 col-md-4">
@@ -134,8 +147,13 @@
       			<% } %>
           	</div>
 		<% } %>	
+            
+        </div>
+        <!-- /#page-wrapper -->
 
-	</div> 
+    </div>
+    <!-- /#wrapper -->
+
 </div>
 </div>
 </body>
