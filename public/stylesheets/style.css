@@ -151,3 +151,100 @@ body{
    /*content: "\2605";*/
    /*position: absolute;*/
 }
+
+.span3 {
+float:left;
+}
+
+
+#leftnav {
+  line-height:30px;
+  outline-width: 50px;
+  background-color:#eeeeee;
+  float:left;
+  padding:5px;
+}
+#section {
+  float:left;
+  padding:10px 10px;
+}
+
+.thumbnail {
+  padding:10px 10px 10px 10px;
+  width:280px; height:340px;
+  text-align: center;
+}
+
+#overflow {
+  white-space: nowrap;
+  width: 90%; 
+  font-size: 22px;
+  font-weight: bold;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding:10px 10px; 
+}
+
+
+.panel {
+  position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+  position:absolute;
+  top:11px;left:-16px;
+  right:100%;
+  width:0;
+  height:0;
+  display:block;
+  content:" ";
+  border-color:transparent;
+  border-style:solid solid outset;
+  pointer-events:none;
+}
+.panel>.panel-heading:after{
+  border-width:7px;
+  border-right-color:#f7f7f7;
+  margin-top:1px;
+  margin-left:2px;
+}
+.panel>.panel-heading:before{
+  border-right-color:#ddd;
+  border-width:8px;
+}
+
+.jumbotron {
+  background-image: url("/image/jumbotron.jpg");
+  text-align: center;
+}
+.button:hover {
+  background-color:#66E0FF;
+}
+
+.leftlist{
+  float: center;
+}
+.button {
+  display: inline-block;
+  text-align: center;
+  font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: .1em .1em;
+  padding-right: .3em;
+  background-color: rgb(0,126,226);
+  border: none;
+  color: white;
+  transition: .2s;
+}
+
+.button {
+  min-width: 9em;
+}
+
+.button:active {
+  width: 150px;
+  height: 100px;
+  background:url("/image/egg.png") no-repeat 0 0;
+  background-color:#FFFF00;
+}
