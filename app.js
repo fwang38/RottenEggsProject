@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var movies = require('./routes/movies');
+var addcomment = require('./routes/addcomment');
 var vote = require('./routes/vote');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
@@ -75,6 +76,7 @@ app.get('/movies', movies.displayResponse);
 app.get('/persons', persons.displayResponse);
 app.get('/getGenre',genres.displayResponse);
 app.get('/getMovies',movie.displayResponse);
+app.get('/addcomment',addcomment.displayResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
