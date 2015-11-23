@@ -43,7 +43,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/homepage">RottenEggs</a>
+      <a class="navbar-brand" href="/">RottenEggs</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,10 +129,10 @@
  	<div class="col-md-5 col-md-offset-1">
  		<p></p>
  		<p><%= results[0].title.replace(/"/g, '') %></p>
- 		<p>Released on <%= results[0].releasedate.replace(/"/g, '') %></p>
- 		<p>IMDB Rating <%= results[0].userrating %>
+ 		<p>Released on <%= results[0].releasedate.replace(/"/g, '') %></p>		
+ 		<p>IMDB Rating <%= results[0].userrating %></p>
  		
- 		<div class="imdbrating"></div></p>
+ 		<p id="imdbrating"></p>
  		
  		<p>Rotten Tomotoes Rating: PLACEHOLDER FOR RT RATING</p>
  		<p>Runtime: <%= results[0].runtime %> minutes</p>
@@ -215,19 +215,22 @@
 <br>
 
 <div>
-
-<script language="javascript">
+ 		<script language="javascript">
 		
-		for (i=1; i<7; i++){
-			var o=document.getElementsByClassName("imdbrating");
+		var rat1 = results[0].userrating;
+		var rat2 = 10 - results[0].userrating;
+		
+		for (i=1; i<rat1; i++){
+			var o=document.getElementsByIdName("imdbrating");
 			o[0].innerHTML+="<span>★</span>"
 		}
-		for (j=1; j<3; j++){
-			var o=document.getElementsByClassName("imdbrating");
+		for (j=1; j<rat2; j++){
+			var o=document.getElementsByIdName("imdbrating");
 			o[0].innerHTML+="<span>☆</span>"	
 		}
 
-</script>
+		</script>
+
 
 
 
