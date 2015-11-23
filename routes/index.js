@@ -10,10 +10,10 @@ router.get('/', function(req, res, next) {
 });
 
 //, resultsperson:null
-router.get('/homepage', function(req, res, next) {
-	
-	res.render('homepage', {results: null});
-});
+//router.get('/homepage', function(req, res, next) {
+//	
+//	res.render('homepage', {results: null});
+//});
 
 router.get('/comment', function(req, res, next) {
 	res.render('comment', {results: null});
