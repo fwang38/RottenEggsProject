@@ -53,12 +53,12 @@
                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                                 	<div class="form-group">
                                 		<label class="sr-only" for="exampleInputEmail2">Username</label>
-                                		<input type="text" class="form-control" name="username">
+                                		<input type="text" class="form-control" name="username" id="exampleInputEmail2" placeholder="Username" required>
                                 		<!-- <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required> -->
                                 	</div>
                                 	<div class="form-group">
                                 		<label class="sr-only" for="exampleInputPassword2">Password</label>
-                                		<input type="password" class="form-control" name="password">
+                                		<input type="password" class="form-control" name="password" id="exampleInputPassword2" placeholder="Password" required>
                                 		<!-- <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required> -->
                                 	</div>
                                 	<div class="form-group">
@@ -178,8 +178,7 @@
 			<% if(resultsperson!=null && resultsmovie!=null) {%>
 			<p>not null person</p>>
 			<div class="container">
-				<h2>Results</h2>    
-				<%= resultsperson[0].name.replace(/"/g, "")%>       
+				<h2>Results</h2>  
 				<table class="table">
 					<thead>
 						<tr>
