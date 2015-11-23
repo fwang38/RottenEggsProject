@@ -15,25 +15,25 @@ module.exports = function(passport) {
         });
     });
     passport.use('signup', new LocalStrategy({
-        usernameField : 'email',
+        usernameField : 'username',
         passwordField : 'password',
         passReqToCallback : true 
     },
-    function(req, email, password, done) {
+    function(req, username, password, done) {
 
         
         process.nextTick(function() {
 
         
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        User.findOne({ 'local.username' :  username }, function(err, user) {
             // if there are any errors, return the error
             if (err)
                 return done(err);
 
             // check to see if theres already a user with that email
             if (user) {
-            	console.log("That email is already taken.");
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+//            	console.log("That username is already taken.");
+                return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
             } else {
             	console.log("hi");
             	
@@ -42,8 +42,8 @@ module.exports = function(passport) {
                 var newUser = new User();
 
                 // set the user's local credentials
-//                newUser.local.username = username;
-                newUser.local.email    = email;
+                newUser.local.username = username;
+//                newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
 
                 // save the user

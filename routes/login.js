@@ -17,13 +17,13 @@ module.exports = function(passport) {
     
     passport.use('login', new LocalStrategy({
         
-        usernameField : 'email',
+        usernameField : 'username',
         passwordField : 'password',
         passReqToCallback : true 
     },
-    function(req, email, password, done) { 
+    function(req, username, password, done) { 
         
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        User.findOne({ 'local.username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);

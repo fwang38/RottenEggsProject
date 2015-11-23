@@ -3,52 +3,50 @@ var router = express.Router();
 var mysql = require('mysql');
 //var result=[];
 //var resultperson=[];
-
-function doquery(q){
-	var q='SELECT * from movie m where m.title LIKE \'%'+ movie+'%\' limit 5';
+function doquery(q,q2,callback){
 	var result=[];
-	
+	var resultsperson=[];
 	var connection = mysql.createConnection({
 		  host     : 'mydb.c31kdvhm3rfj.us-west-2.rds.amazonaws.com',
 		  user     : 'boliu',
 		  password : 'liubo1678',
-		  database : 'RottenEggs'
+		  database : 'RottenEggs',
+		  multipleStatements: true
 		});
 	connection.connect();
 	
-	connection.query(q , function(err, rows, fields) {
+	connection.query(q+';'+q2, function(err, rows, fields) {
+		console.log(q+';'+q2);
 	  	if (!err){
-		  	for (var i in rows) {
-		        result.push(rows[i]);
-		   	}
-		  	console.log("result!!!!!");
+		        result=rows[0];
+		        resultsperson=rows[1];
+		        callback(result,resultsperson);
+		  	console.log("aaa!!!!!");
 		  	console.log(result);
-		  	return result;
-		} 
+		  	console.log(resultsperson);
+		}  	
 	  	else console.log('Error while performing Query.');
 	});
 	
 	connection.end();
 }
 
-function keywordMovie(req, res, callback){
-	
+function keywordMovie(req, res){
 	
 	var movie=req.query.movie;
 	console.log(req.query.movie);
 	
-	//console.log(doquery(q));
+	var q='SELECT * from movie m where m.title LIKE \'%'+ movie+'%\' limit 10';
+	var q2='SELECT * from personinfo p where p.name LIKE \'%'+ movie+'%\' limit 10';
+	doquery(q,q2,function(resultsmovie,resultsperson){
+		console.log(resultsmovie);
+		console.log("result!!!!!!");
+		res.render('index',{results:null, resultsmovie:resultsmovie, resultsperson:resultsperson, user:req.user});
+	});
 	console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	var x = 	
-	var x1= 
-	callback(x,x1);
-	
+
 }
 //
 exports.displayResponse = function(req, res){
-	keywordMovie(req, res, function(resultsmovie, resultsperson){
-		console.log(resultsmovie);
-		console.log(resultsperson);
-		res.render('index',{results:null, resultsmovie:resultsmovie, resultsperson:resultsperson, user:req.user});
-	});
+	keywordMovie(req, res);
 };
