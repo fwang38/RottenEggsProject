@@ -170,7 +170,7 @@ float:left;
 
 .thumbnail {
   padding:10px 10px 10px 10px;
-  width:280px; height:340px;
+  width:280px; height:350px;
   text-align: center;
 }
 
@@ -240,13 +240,6 @@ float:left;
 .button {
   min-width: 15em;
   min-height: 3em;
-}
-
-.button:active {
-  width: 150px;
-  height: 100px;
-  background:url("/image/egg.png") no-repeat 0 0;
-  background-color:#FFFF00;
 }
 
 
@@ -385,5 +378,30 @@ float:left;
 }
 
 
+.vote-button {
+  display: inline-block;
+  text-align: center;
+  font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: .1em .1em;
+  padding-right: .3em;
+  background-color: rgb(0,126,226);
+  border: none;
+  color: white;
+  transition: .2s;
 
+  width: 50px;
+  height: 38px;
+
+  background:url("/image/egg.png") no-repeat 0 0;
+}
+
+.vote-button:hover {
+  
+}
+
+.vote-button:active {
+  
+}
 
