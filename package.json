@@ -21,6 +21,7 @@
     "bcrypt-nodejs" : "latest",
     "express-session": "~1.0.0",
     "mongoose" : "~3.8.1",
-    "passport-facebook" : "latest"
+    "passport-facebook" : "latest",
+    "node-bing-api" : "latest"
   }
 }
