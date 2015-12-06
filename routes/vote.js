@@ -1,7 +1,10 @@
 var mysql = require('mysql');
 
 function getResults(req, res, connection, callback) {
-	connection.query("INSERT INTO votes (movieid,userid) VALUES(" + req.query.movieid + "," + "'" + req.user._id + "'" +")", function(err, rows, fields) {
+	var q1 = "INSERT INTO votes (movieid,userid) VALUES(" + req.query.movieid + "," + "'" + req.user._id + "'" +");"
+	var q2 = "UPDATE movie SET vote = vote + 1  WHERE movie_id = " + req.query.movieid + ";"
+	console.log(q1+q2);
+	connection.query(q1+q2, function(err, rows, fields) {
 		if (!err){
 			console.log('The solution is: ', rows);
 			callback(rows);			
@@ -21,7 +24,8 @@ function generateResponse(req, res) {
 		host     : 'mydb.c31kdvhm3rfj.us-west-2.rds.amazonaws.com',
 		user     : 'boliu',
 		password : 'liubo1678',
-		database : 'RottenEggs'
+		database : 'RottenEggs',
+		multipleStatements: true
 	});
 
 	connection.connect(function(err){
