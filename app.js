@@ -16,7 +16,6 @@ var signup = require('./routes/signup');
 var genres= require('./routes/genres');
 var movie=require('./routes/movie');
 var persons = require('./routes/persons');
-
 var app = express();
 
 var passport = require('passport');
@@ -32,9 +31,6 @@ mongoose.connect(dbConfig.url);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
-	
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -42,7 +38,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 //required for passport
 app.use(session({ secret: 'supernova', saveUninitialized: true, resave: false})); // session secret
@@ -72,12 +67,12 @@ app.get('/vote', vote.displayResponse);
 //app.get('/index',index.generateResponse);
 app.get('/login', login);
 app.get('/signup', signup);
-
 app.get('/movies', movies.displayResponse);
 app.get('/persons', persons.displayResponse);
 app.get('/getGenre',genres.displayResponse);
 app.get('/getMovies',movie.displayResponse);
 app.get('/addcomment',addcomment.displayResponse);
+app.get('/linktomovie',movies.displayResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

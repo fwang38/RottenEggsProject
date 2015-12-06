@@ -1,11 +1,12 @@
 
 var mysql      = require('mysql');
-var movie_id   = 120;
+
 var movie_id_for_comment = 843; 
 var MongoClient = require('mongodb').MongoClient;
-
-
+var express = require('express');
+var router = express.Router();
 function getResults(db, callback) {
+
 	var cursor =db.collection('movie_reviews').find({ '_id': movie_id_for_comment });
 	var commentresult = [];
 	cursor.each(function(err, doc) {
@@ -56,6 +57,9 @@ function generateResponse2(req, res, callback) {
 
 
 function generateResponse(req, res) {
+	var movie_id=req.query.movieid;
+	console.log(movie_id);
+	console.log('aa');
 //	generateResponse(req, res);
 	var results = [];
 	var connection = mysql.createConnection({
@@ -67,7 +71,7 @@ function generateResponse(req, res) {
 
 	connection.connect();
 	
-	connection.query("SELECT * from movie m INNER JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id, function(err, rows, fields) {
+	connection.query("SELECT * from movie m LEFT JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id, function(err, rows, fields) {
 	  if (!err){
 	    console.log('The solution is: ', rows);
 	    results = rows.slice();
@@ -77,16 +81,13 @@ function generateResponse(req, res) {
 			//results = commentresult;
 			//console.log(results);
 			//res.render('movies.ejs', {results: results});
+	    	console.log('feng ge shi hao ren!!!')
 	    	console.log(results)
 	    	console.log(commentresult)
 			res.render('movies.ejs', {results: results, commentresult: commentresult, user:req.user});
 		});
-	    
-	    //console.log(commentresult)
-	    
-	    //console.log(results)
-	    
 	   	}
+	  
 	  else
 	    console.log('Error while performing Query.');
 	});
