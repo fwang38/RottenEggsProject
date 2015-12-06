@@ -29,9 +29,12 @@
 				<div>
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/">Home</a></li>
-						<li><a href="/homepage"> test</a></li>
+						<% if(user == null){ %>
+						<li><a href="/login"> Your Account</a></li> 
+						<% }
+						else { %>
 						<li><a href="/profile"> Your Account</a></li> 
-						<li><a href="/???">References</a></li> 
+						<% } %>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
