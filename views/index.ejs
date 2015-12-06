@@ -174,33 +174,30 @@
 	<!-- /.navbar-static-side -->
 </nav>
 
-<div id="page-wrapper">
-	<h2>Bing Results</h2>
-	<% if(resultsperson!=null && resultsmovie!=null) {%> 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Results</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% for(var i=0; i<bing.length; i++) { %>
-			<tr>
-				<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
-					<td><a href=<%= bing[i].Url%> > <%= bing[i].Title%> </a></td>
-					<td><%= bing[i].Description%></td>						
-				</form>
-			</tr> 
-			<% } %>
-		</tbody>
-	</table>
-
-	<h2>Database Results</h2>
-	
-	<p>not null person</p>>
+<div id="page-wrapper">	
 	<div class="container">
-		<h2>Results</h2>  
+		<% if(bing !=null && resultsperson!=null && resultsmovie!=null) { %>
+		<h2>Bing Results</h2>  
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Results</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(var i=0; i<bing.length; i++) { %>
+				<tr>
+					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+						<td><a href=<%= bing[i].Url%> > <%= bing[i].Title%> </a></td>
+						<td><%= bing[i].Description%></td>						
+					</form>
+				</tr> 
+				<% } %>
+			</tbody>
+		</table>
+
+		<h2>Database Results</h2>
 		<table class="table">
 			<thead>
 				<tr>
@@ -219,7 +216,6 @@
 				</tr> 
 				<% } %>
 				<% for(var i=0; i<resultsmovie.length; i++) { %>
-
 				<tr>
 					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
 						<td><%= resultsmovie[i].title%></td>
