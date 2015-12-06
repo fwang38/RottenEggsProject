@@ -165,11 +165,16 @@ Tweet</a>
  		
  		<p>Rotten Tomotoes Rating: PLACEHOLDER FOR RT RATING</p>
  		<p>Runtime: <%= results[0].runtime %> minutes</p>
- 		<p>Overview: <%= results[0].overview %></p>
+
+    <p>Overview: <%= results[0].overview.replace(/"/g, '') %></p>
  		<br>
  		
+<% if (results[0].url != null) { %>
+
 
  		<iframe id ="video" src=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> height="300" width="450" allowfullscreen="" frameborder="0" class="embed-responsive-item"></iframe>
+<% } %>
+
  	</div>   
 </div>
 

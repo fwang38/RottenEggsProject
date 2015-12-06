@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 
+
 function generateBadmovies(req,res){
 	var genre=req.query.g;
 	console.log(req.query.g);
@@ -30,6 +31,12 @@ function generateBadmovies(req,res){
 		    console.log('Error while performing Query.');
 		});
 		connection.end();
+}
+
+function linktomovie(req,res){
+	var genre=req.query.g;
+	console.log(req.query.g);
+	console.log('aa');
 }
 
 

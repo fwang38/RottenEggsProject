@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var Bing = require('node-bing-api')({ accKey: "OTpuAnHgxrv5ldRgN/0hOKU3g++cfJyJF8rX7PdK+RQ" });
 //var result=[];
 //var resultperson=[];
 function doquery(q,q2,callback){
@@ -22,8 +23,6 @@ function doquery(q,q2,callback){
 		        resultsperson=rows[1];
 		        callback(result,resultsperson);
 		  	console.log("aaa!!!!!");
-		  	console.log(result);
-		  	console.log(resultsperson);
 		}  	
 	  	else console.log('Error while performing Query.');
 	});
@@ -38,15 +37,27 @@ function keywordMovie(req, res){
 	
 	var q='SELECT * from movie m where m.title LIKE \'%'+ movie+'%\' limit 10';
 	var q2='SELECT * from personinfo p where p.name LIKE \'%'+ movie+'%\' limit 10';
+
 	doquery(q,q2,function(resultsmovie,resultsperson){
-		console.log(resultsmovie);
-		console.log("result!!!!!!");
-		res.render('index',{results:null, resultsmovie:resultsmovie, resultsperson:resultsperson, user:req.user});
+		Bing.news(movie, {
+		    top: 10,  // Number of results (max 15) 
+		    skip: 0,   // Skip first 3 results 
+		    newsSortBy: "Date", //Choices are: Date, Relevance 
+		    newsCategory: "rt_Entertainment"
+		  }, function(error, results, body){
+		    console.log(body.d.results);		
+		    console.log("result!!!!!!");
+			res.render('index',{results:null, bing:body.d.results, resultsmovie:resultsmovie, resultsperson:resultsperson, user:req.user});
+		});
+		
+		
 	});
 	console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 }
 //
+
+
 exports.displayResponse = function(req, res){
 	keywordMovie(req, res);
 };
