@@ -1,6 +1,6 @@
 
 var mysql      = require('mysql');
-var movie_id   = 120;
+var movie_id   = 110;
 var movie_id_for_comment = 843; 
 var MongoClient = require('mongodb').MongoClient;
 
@@ -66,8 +66,10 @@ function generateResponse(req, res) {
 	});
 
 	connection.connect();
+	var q = "SELECT * from movie m INNER JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id;
+	console.log(q);
+	connection.query(q, function(err, rows, fields) {
 	
-	connection.query("SELECT * from movie m INNER JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id, function(err, rows, fields) {
 	  if (!err){
 	    console.log('The solution is: ', rows);
 	    results = rows.slice();

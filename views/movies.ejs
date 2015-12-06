@@ -122,10 +122,39 @@
 <div class="row">
  	<div class="col-md-5">
  	<img src=<%=results[0].poster.replace(/"/g, '')%> class="img-thumbnail" class="img-responsive" ""alt="Cinque Terre" width="304" height="236" style="margin:0px 0px 10px 100px">
- 	<p><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
- 	<a href="https://twitter.com/share" class="twitter-share-button"{count}>Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>         
- 	</div>
+ 		
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '522822474566027',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<p>Share on Facebook: <div class="fb-like" data-href=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
+
+
+<a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet"
+  data-size="default">
+Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 	
+
+<link rel="canonical"
+  href=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%>>	
+ 	
+ 	
+ </div>
  	<div class="col-md-5 col-md-offset-1">
  		<p></p>
  		<p><%= results[0].title.replace(/"/g, '') %></p>
@@ -136,6 +165,7 @@
  		
  		<p>Rotten Tomotoes Rating: PLACEHOLDER FOR RT RATING</p>
  		<p>Runtime: <%= results[0].runtime %> minutes</p>
+ 		<p>Overview: <%= results[0].overview %></p>
  		<br>
  		
 
