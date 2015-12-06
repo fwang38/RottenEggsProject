@@ -16,7 +16,7 @@ var signup = require('./routes/signup');
 var genres= require('./routes/genres');
 var movie=require('./routes/movie');
 var persons = require('./routes/persons');
-
+var profile = require('./routes/profile');
 var app = express();
 
 var passport = require('passport');
@@ -72,7 +72,7 @@ app.get('/vote', vote.displayResponse);
 //app.get('/index',index.generateResponse);
 app.get('/login', login);
 app.get('/signup', signup);
-
+app.get('/profile', profile.displayResponse);
 app.get('/movies', movies.displayResponse);
 app.get('/persons', persons.displayResponse);
 app.get('/getGenre',genres.displayResponse);

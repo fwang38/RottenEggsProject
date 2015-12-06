@@ -4,6 +4,8 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -28,6 +30,10 @@
                         <strong>id</strong>: <%= user._id %><br>
                         <strong>username</strong>: <%= user.local.username %><br>
                         <strong>password</strong>: <%= user.local.password %>
+                        <% if(results!=null) {%>
+                        <% for(var i=0; i<results.length; i++) { %>
+                        <strong><%= results[i].title%></strong>
+                        <% } }%>
                     </p>
 
             </div>
@@ -44,6 +50,22 @@
                     </p>
 
             </div>
+        </div>
+
+        <% for(var i=0; i<results.length; i++) { %>
+        <% if(i%4==0) { %>
+        <div class="row">
+            <% } %> 
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <form id="movieSelectForm" name='selectMovie' action="/vote" method="get" style="float:center">
+                        <% var poster=results[i].poster.replace(/"/g, "") %>
+                        <input type=image src=<%= poster %>  alt="..." style="width:160px;height:228px;" >
+                        <p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
+                    </form>
+                </div>
+            </div>
+            <% } %>
         </div>
 
     </div>
