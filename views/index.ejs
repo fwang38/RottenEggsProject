@@ -36,7 +36,7 @@
 
 					<ul class="nav navbar-nav navbar-right">
 						<% if(user == null){ %>
-
+						
 						<li><p class="navbar-text">Already have an account?</p></li>
 						<li class="dropdown">
 							<a href="/login" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
@@ -175,30 +175,32 @@
 </nav>
 
 <div id="page-wrapper">
-	<% if(bing != null && resultsperson!=null && resultsmovie!=null) {%>
+	<h2>Bing Results</h2>
+	<% if(resultsperson!=null && resultsmovie!=null) {%> 
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Results</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(var i=0; i<bing.length; i++) { %>
+			<tr>
+				<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+					<td><a href=<%= bing[i].Url%> > <%= bing[i].Title%> </a></td>
+					<td><%= bing[i].Description%></td>						
+				</form>
+			</tr> 
+			<% } %>
+		</tbody>
+	</table>
+
+	<h2>Database Results</h2>
+	
 	<p>not null person</p>>
 	<div class="container">
-		<h2>Bing Results</h2> 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Results</th>
-					<th>Description</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% for(var i=0; i<bing.length; i++) { %>
-				<tr>
-					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
-						<td><a href=<%= bing[i].Url%> > <%= bing[i].Title%> </a></td>
-						<td><%= bing[i].Description%></td>						
-					</form>
-				</tr> 
-				<% } %>
-			</tbody>
-		</table>
-
-		<h2>Database Results</h2>
+		<h2>Results</h2>  
 		<table class="table">
 			<thead>
 				<tr>
@@ -206,7 +208,7 @@
 					<th>biography</th>
 				</tr>
 			</thead>
-			<tbody>		
+			<tbody>
 				<% for(var i=0; i<resultsperson.length; i++) { %>
 				<tr>
 					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
@@ -232,17 +234,6 @@
 
 		<% if(results==null){ %>
 		<p> result null!</p>
-		<div class="row">
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<img src="image/m1.jpg" alt="..." style="width:160px;height:228px;">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p><a href="#" class="btn btn-primary" role="button">Bad</a> <a href="#" class="btn btn-default" role="button">Read more</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>	
 	<% } 
 	else { %>
@@ -257,17 +248,21 @@
 	<div class="col-sm-6 col-md-3">
 		<div class="thumbnail">
 			<% if(user == null){ %>
-			<form id="movieSelectForm" name='selectMovie' action="/login" method="get" style="float:center">
+			<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
 				<% var poster=results[i].poster.replace(/"/g, "") %>
-				<input type=image src=<%= poster %>  alt="..." style="width:160px;height:228px;" >
+				<input type=image src=<%= poster %>  name= "movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
+			</form>
+			<form id="movieSelectForm" name='selectMovie' action="/login" method="get" style="float:center">
 				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
 				<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
 			</form>
 			<% }
 			else { %>
-			<form id="movieSelectForm" name='selectMovie' action="/vote" method="get" style="float:center">
+			<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
 				<% var poster=results[i].poster.replace(/"/g, "") %>
-				<input type=image src=<%= poster %>  alt="..." style="width:160px;height:228px;" >
+				<input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
+			</form>
+			<form id="movieSelectForm" name='selectMovie' action="/vote" method="get" style="float:center">
 				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
 				<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
 			</form>

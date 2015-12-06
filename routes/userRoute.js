@@ -1,4 +1,4 @@
-
+var profile = require('../routes/profile');
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on 
@@ -10,13 +10,15 @@ function isLoggedIn(req, res, next) {
 }
 
 module.exports = function(app, passport){
-	 
 
-	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render('profile.ejs', {
-			user : req.user 
-		});
-	});
+	app.get('/profile', isLoggedIn, profile.displayResponse);
+
+//	app.get('/profile', isLoggedIn, function(req, res) {
+//		res.render('profile.ejs', {
+//			results: null,
+//			user : req.user 
+//		});
+//	});
 	
 	app.get('/login', function(req, res) {
 		// Display the Login page with any flash message, if any

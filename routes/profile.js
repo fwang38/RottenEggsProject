@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 
-
-function generateBadmovies(req,res){
+function getUserVote(req,res){
 	var genre=req.query.g;
 	console.log(req.query.g);
 	console.log('aa');
@@ -14,7 +13,7 @@ function generateBadmovies(req,res){
 		  password : 'liubo1678',
 		  database : 'RottenEggs'
 		});
-		var q='SELECT * from movie m, movie_genre mg where m.movie_id=mg.id and mg.genre = \''+ genre+'\' limit 15';
+		var q='SELECT * from votes v, movie m where v.userid =\''+ req.user.id +'\' and v.movieid=m.movie_id' ;
 		console.log(q);
 		connection.connect();
 		connection.query(q , function(err, rows, fields) {
@@ -25,7 +24,8 @@ function generateBadmovies(req,res){
 			        result.push(rows[i]);
 			   }
 			  console.log(result);
-			    res.render('index',{results:result, resultsperson:null, resultsmovie:null, user:req.user});
+			  res.render('profile',{results:result, user:req.user});
+//			  res.render('profile',{results:result, resultsperson:null, resultsmovie:null, user:req.user});
 		  } 
 		  else
 		    console.log('Error while performing Query.');
@@ -33,13 +33,7 @@ function generateBadmovies(req,res){
 		connection.end();
 }
 
-function linktomovie(req,res){
-	var genre=req.query.g;
-	console.log(req.query.g);
-	console.log('aa');
-}
-
 
 exports.displayResponse = function(req, res){
-	generateBadmovies(req, res);
+	getUserVote(req, res);
 };
