@@ -68,10 +68,7 @@ app.get('/vote', vote.displayResponse);
 //app.get('/index',index.generateResponse);
 app.get('/login', login);
 app.get('/signup', signup);
-<<<<<<< HEAD
 app.get('/profile', profile.displayResponse);
-=======
->>>>>>> 7aeb7192ec9132403134f45d96241899e564003e
 app.get('/movies', movies.displayResponse);
 app.get('/persons', persons.displayResponse);
 app.get('/getGenre',genres.displayResponse);

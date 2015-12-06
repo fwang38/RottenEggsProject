@@ -58,9 +58,9 @@
             <% } %> 
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <form id="movieSelectForm" name='selectMovie' action="/vote" method="get" style="float:center">
+                    <form id="movieSelectForm" name='selectMovie' action="/linktomovie" method="get" style="float:center">
                         <% var poster=results[i].poster.replace(/"/g, "") %>
-                        <input type=image src=<%= poster %>  alt="..." style="width:160px;height:228px;" >
+                        <input type=image src=<%= poster %>  name='movieid' alt="..." style="width:160px;height:228px;" value= <%=results[i].movie_id %> >
                         <p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
                     </form>
                 </div>
