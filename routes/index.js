@@ -46,19 +46,9 @@ function generateResponse(req, res) {
 	      var hasvoted = [];
 	      if (hi != null) {
 	    	  for (var i in hi){
-	    		  console.log('here-----');
-	    		  console.log(hi[i].movie_id);
 	    		  hasvoted.push(hi[i].movie_id);
 	    	  }
 	      }
-		  if (req.user!=null){
-			  console.log(hasvoted);
-		  }
-		  console.log(hasvoted.indexOf(205775));
-		  console.log(hasvoted.indexOf(11));
-		  console.log(11 in hasvoted);
-		  console.log(205775 in hasvoted);
-		  console.log('------'+hasvoted);
 		  res.render('index',{bing: null, results:result, hasvoted:hasvoted, recentvote: recentvote, currentworst:currentworst, resultsperson:null, resultsmovie:null, limitnum:12, user:req.user});
 	} 
 	else

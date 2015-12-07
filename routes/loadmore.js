@@ -27,14 +27,29 @@ function generateResponse(req, res) {
 		}
 	});
 	var lim=(parseInt(limitnum)+parseInt(12));
-	var q='select * from movie order by releasedate desc limit '+lim;
+	var q1='select * from movie order by releasedate desc limit '+lim+';';
+	if (req.user != null) {
+		var q4='SELECT movie_id from votes v, movie m where v.userid =\''+ req.user.id +'\' and v.movieid=m.movie_id'
+	}
+	else {
+		var q4 = '';
+	}
+	var q=q1+q4;
+	
 	console.log(q);
 	connection.query(q , function(err, rows, fields) {
 	if (!err){
-		  console.log('The solution is: ');
-		  var result=rows;
+		  console.log('The solution is: ');		  
+		  var result=rows[0];
+	      var hi=rows[1];
+	      var hasvoted = [];
+	      if (hi != null) {
+	    	  for (var i in hi){
+	    		  hasvoted.push(hi[i].movie_id);
+	    	  }
+	      }
 		  console.log(rows);
-		  res.render('index',{bing: null, results:result, limitnum:lim, recentvote: null, currentworst:null, resultsperson:null, resultsmovie:null, user:req.user});
+		  res.render('index',{bing: null, results:result, limitnum:lim, hasvoted: hasvoted, recentvote: null, currentworst:null, resultsperson:null, resultsmovie:null, user:req.user});
 	} 
 	else
 	    console.log('Error while performing Query.');
