@@ -11,7 +11,7 @@ function getResults(movie_id, db, callback) {
 	var commentresult = [];
 	cursor.each(function(err, doc) {
 		if (doc != null) {
-			//console.log(doc.reviews[0])
+			console.log(doc.reviews[0])
 			
 			for (i=0; i<doc.reviews.length; i++){
 				commentresult.push(doc.reviews[i]);
