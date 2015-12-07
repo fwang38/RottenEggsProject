@@ -120,75 +120,49 @@
 <div class="row">
  	<div class="col-md-5">
  	<img src=<%=results[0].profile.replace(/"/g, '')%> class="img-thumbnail" class="img-responsive" ""alt="Cinque Terre" width="304" height="236" style="margin:0px 0px 10px 100px">
- 	<p><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
- 	<a href="https://twitter.com/share" class="twitter-share-button"{count}>Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>         
+ 	
  	</div>
  	<div class="col-md-5 col-md-offset-1">
  		<p></p>
+ 		<br>
+ 		<br>
+ 		<br>
  		<p>Name: <%= results[0].name.replace(/"/g, '') %></p>
  		<p>Date of Birth: <%= results[0].dayofbirth.replace(/"/g, '') %></p>
  		<p>Biography: <%= results[0].biography.replace(/"/g, '') %></p>
+ 
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '522822474566027',
+		      xfbml      : true,
+		      version    : 'v2.5'
+		    });
+		  };
+		
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "//connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>
+		
+		<p>Share on Facebook and Twitter: <div class="fb-like" data-href=<%= results[0].profile.replace(/"/g, '') %> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
+		
+		
+		<a class="twitter-share-button"
+		  href="https://twitter.com/intent/tweet"
+		  data-size="default">
+		Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 	
+		
+		<link rel="canonical"
+		  href=<%=results[0].profile.replace(/"/g, '')%>>	
  		<br>
  		
  	</div>   
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="page-header">Comments</h2>
-        <section class="comment-list">
-          <!-- First Comment -->
-          <article class="row">
-            <div class="col-md-2 col-sm-2 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                <figcaption class="text-center">username</figcaption>
-              </figure>
-            </div>
-            <div class="col-md-10 col-sm-10">
-              <div class="panel panel-default arrow left">
-                <div class="panel-body">
-                  <header class="text-left">
-                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                  </header>
-                  <div class="comment-post">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-          <article class="row">
-            <div class="col-md-2 col-sm-2 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                <figcaption class="text-center">username</figcaption>
-              </figure>
-            </div>
-            <div class="col-md-10 col-sm-10">
-              <div class="panel panel-default arrow left">
-                <div class="panel-body">
-                  <header class="text-left">
-                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                  </header>
-                  <div class="comment-post">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-        </section>
-    </div>
-  </div>
 </div>
 
 <br>

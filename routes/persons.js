@@ -1,6 +1,6 @@
 
 var mysql      = require('mysql');
-var movie_id   = 12;
+var personid   = 12;
 
 function generateResponse(req, res) {
 //	generateResponse(req, res);
@@ -14,7 +14,7 @@ function generateResponse(req, res) {
 
 	connection.connect();
 	
-	connection.query("SELECT * from personinfo p WHERE personid=12", function(err, rows, fields) {
+	connection.query("SELECT * from personinfo p WHERE personid =" + personid, function(err, rows, fields) {
 	  if (!err){
 	    console.log('The solution is: ', rows);
 	    results = rows.slice();
