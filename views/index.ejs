@@ -30,9 +30,12 @@
 				<div>
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/">Home</a></li>
-						<li><a href="/homepage"> test</a></li>
+						<% if(user == null){ %>
+						<li><a href="/login"> Your Account</a></li> 
+						<% }
+						else { %>
 						<li><a href="/profile"> Your Account</a></li> 
-						<li><a href="/???">References</a></li> 
+						<% } %>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -272,6 +275,59 @@
 	<% } %>
 </div>
 <% } %>	
+
+
+<div class="container">
+	<% if( recentvote !=null) { %>
+	<h2>Recent Vote</h2>  
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Movie ID</th>
+				<th>User ID</th>
+				<th>Timestamp</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(var i=0; i<recentvote.length; i++) { %>
+			<tr>
+				<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+					<td><%= recentvote[i].movieid %></td>
+					<td><%= recentvote[i].userid %></td>
+					<td><%= recentvote[i].ts %></td>						
+				</form>
+			</tr> 
+			<% } %>
+		</tbody>
+	</table>
+	<% } %>
+
+	<% if( currentworst!=null ) { %>
+	<h2>Current Worst Movies</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Rank</th>
+				<th>Name</th>
+				<th>Votes</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(var i=0; i<currentworst.length; i++) { %>
+			<tr>
+				<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+					<td><%= i+1 %></td>
+					<td><%= currentworst[i].title.replace(/"/g, "")%></td>
+					<td><%= currentworst[i].vote %></td>
+				</form>
+			</tr> 
+			<% } %>
+		</tbody>
+	</table>
+	<% } %> <!--end of if-->
+	<!--if results == null randomly return 10 bad movies here-->
+</div>
+
 </div>
 <!-- /#page-wrapper -->
 </div>
