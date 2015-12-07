@@ -59,7 +59,7 @@ function generateResponse(req, res) {
 		  console.log(11 in hasvoted);
 		  console.log(205775 in hasvoted);
 		  console.log('------'+hasvoted);
-		  res.render('index',{bing: null, results:result, hasvoted:hasvoted, recentvote: recentvote, currentworst:currentworst, resultsperson:null, resultsmovie:null, user:req.user});
+		  res.render('index',{bing: null, results:result, hasvoted:hasvoted, recentvote: recentvote, currentworst:currentworst, resultsperson:null, resultsmovie:null, limitnum:12, user:req.user});
 	} 
 	else
 	    console.log('Error while performing Query.');
