@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var movies = require('./routes/movies');
 var addcomment = require('./routes/addcomment');
 var vote = require('./routes/vote');
+var unvote = require('./routes/unvote');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 
@@ -65,6 +66,7 @@ passport.serializeUser(function(user, done) {
 app.use('/', routes);
 app.use('/users', users);
 app.get('/vote', vote.displayResponse);
+app.get('/unvote', unvote.displayResponse);
 //app.get('/index',index.generateResponse);
 app.get('/login', login);
 app.get('/signup', signup);
