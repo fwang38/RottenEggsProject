@@ -213,9 +213,10 @@
 			<tbody>
 				<% for(var i=0; i<resultsperson.length; i++) { %>
 				<tr>
-					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+					<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
 						<% var poster=resultsperson[i].profile.replace(/"/g, "") %>
-						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><a href="##" > <%= resultsperson[i].name.replace(/"/g, "")%></a></td>
+						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'>
+						<button type="submit" class="btn btn-link" name="movieid" value = <%= resultsmovie[i].movie_id%> ><%= resultsperson[i].name.replace(/"/g, "")%></button></td>
 						<% var s= resultsperson[i].biography.replace(/"/g, "") %>
 						<% if(s.length<5) {%>
 							<td> No Details</td> <% } else {%>
@@ -276,12 +277,19 @@
 	<% } %>
 </div>
 <% } %>	
+<form id="movieSelectForm" name='selectMovie' action="/loadmore" method="get" style="float:center">
+	<button type="submit" name="limitnum" value = <%=limitnum%> > Load more</button>
+</form>
 
 
 <div class="container">
-	<% if( recentvote !=null) { %>
-	<h2>Recent Vote</h2>  
-	<table class="table">
+	<% if( recentvote !=null) { %> 
+	<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Recent Vote</div>
+
+  <!-- Table -->
+  <table class="table">
 		<thead>
 			<tr>
 				<th>Movie ID</th>
@@ -301,6 +309,8 @@
 			<% } %>
 		</tbody>
 	</table>
+</div>
+	
 	<% } %>
 
 	<% if( currentworst!=null ) { %>

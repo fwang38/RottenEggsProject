@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var movies = require('./routes/movies');
 var addcomment = require('./routes/addcomment');
 var vote = require('./routes/vote');
+var unvote = require('./routes/unvote');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 
@@ -17,6 +18,7 @@ var genres= require('./routes/genres');
 var search=require('./routes/search');
 var persons = require('./routes/persons');
 var profile = require('./routes/profile');
+var loadmore=require('./routes/loadmore');
 var app = express();
 
 var passport = require('passport');
@@ -65,6 +67,7 @@ passport.serializeUser(function(user, done) {
 app.use('/', routes);
 app.use('/users', users);
 app.get('/vote', vote.displayResponse);
+app.get('/unvote', unvote.displayResponse);
 //app.get('/index',index.generateResponse);
 app.get('/login', login);
 app.get('/signup', signup);
@@ -77,6 +80,8 @@ app.get('/getGenre',genres.displayResponse);
 app.get('/getMovies',search.displayResponse);
 app.get('/addcomment',addcomment.displayResponse);
 app.get('/linktomovie',movies.displayResponse);
+app.get('/linktoperson',persons.displayResponse);
+app.get('/loadmore',loadmore.displayResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

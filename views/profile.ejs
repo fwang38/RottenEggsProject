@@ -145,10 +145,18 @@
             <% } %> 
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <form id="movieSelectForm" name='selectMovie' action="/linktomovie" method="get" style="float:center">
+                    <!-- <form id="movieSelectForm" name='selectMovie' action="/linktomovie" method="get" style="float:center">
                         <% var poster=results[i].poster.replace(/"/g, "") %>
                         <input type=image src=<%= poster %>  name='movieid' alt="..." style="width:160px;height:228px;" value= <%=results[i].movie_id %> >
                         <p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
+                    </form> -->
+                    <form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
+                        <% var poster=results[i].poster.replace(/"/g, "") %>
+                        <input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%=results[i].movie_id%> >
+                    </form>
+                    <form id="movieSelectForm" name='selectMovie' action="/unvote" method="get" style="float:center">
+                        <p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
+                        <button type="submit" class="btn btn-primary" name="movieid" value = <%= results[i].movie_id%> > Unvote</button>
                     </form>
                 </div>
             </div>
