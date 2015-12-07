@@ -265,11 +265,18 @@
 				<% var poster=results[i].poster.replace(/"/g, "") %>
 				<input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
 			</form>
+			<% if(hasvoted.indexOf(results[i].movie_id)!= -1){ %>
+			<form id="movieSelectForm" name='selectMovie' action="/unvote" method="get" style="float:center">
+				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
+				<button type="submit" class="btn btn-primary" name="movieid" value = <%= results[i].movie_id%> > Unvote</button>
+			</form>
+			<% }
+			else { %>
 			<form id="movieSelectForm" name='selectMovie' action="/vote" method="get" style="float:center">
 				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
 				<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
 			</form>
-			<% } %>
+			<% } }%>
 		</div>
 	</div>
 	<% } %>
