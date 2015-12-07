@@ -25,7 +25,6 @@ function getUserVote(req,res){
 			   }
 			  console.log(result);
 			  res.render('profile',{results:result, user:req.user});
-//			  res.render('profile',{results:result, resultsperson:null, resultsmovie:null, user:req.user});
 		  } 
 		  else
 		    console.log('Error while performing Query.');

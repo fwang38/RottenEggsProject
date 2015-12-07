@@ -1,6 +1,6 @@
 
 
-var movie_id_for_comment = 843; 
+
 
 function generateResponse(req, res){	
 	//lets require/import the mongodb native drivers.
@@ -26,9 +26,12 @@ function generateResponse(req, res){
 		else {
 	    //HURRAY!! We are connected. :)
 	    console.log('Connection established to', url);
+	    
+	    var movie_id_for_comment = req.query.movieid; 
+	    console.log(movie_id_for_comment);
 
 	    db.collection("movie_reviews").update(
-				  {_id: movie_id_for_comment},
+				  {_id: parseInt(movie_id_for_comment)},
 				  {
 				    "$push" : {
 				      reviews : {
@@ -52,8 +55,9 @@ function generateResponse(req, res){
 
 exports.displayResponse = function(req, res){
 	generateResponse(req, res);
+	console.log("huiehaduiablfhcuascishau")
 	console.log(req.query)
 	console.log(req.user._id)
-	res.redirect('/movies');
+	res.redirect('/linktomovie?movieid='+req.query.movieid);
 };
 
