@@ -7,17 +7,20 @@ var router = express.Router();
 
 
 function getResults(movie_id, db, callback) {
+	console.log("MOVIE ID" + movie_id);
 	var cursor =db.collection('movie_reviews').find({ '_id': parseInt(movie_id)});
 	var commentresult = [];
 	cursor.each(function(err, doc) {
-		if (doc != null) {
-			console.log(doc.reviews[0])
+		console.log("DOC"+ doc + doc != null);
+		if (doc != null){
+		if (doc.reviews != null) {
+			console.log("deded edudhiueahduiehaiuD" + doc.reviews);
 			
 			for (i=0; i<doc.reviews.length; i++){
 				commentresult.push(doc.reviews[i]);
 			}
 			//console.log(commentresult)
-		} else {
+		} }else {
 			console.log(commentresult);
 			callback(commentresult);
 			//console.log(commentresult)
