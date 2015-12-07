@@ -49,7 +49,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
+   <!-- <li class="active"><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
@@ -62,7 +62,7 @@
             <li class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -144,13 +144,10 @@
 
 <% if (results[0].url != null) { %>
 
-<p>Share on Facebook: <div class="fb-like" data-href=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
-
-
-<a class="twitter-share-button"
-  href="https://twitter.com/intent/tweet"
-  data-size="default">
-Tweet</a>
+<p ALIGN=Center>Share on Facebook and Twitter: <div class="fb-like" data-href=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="margin:0px 0px 10px 100px"></div></p>
+<div class="tw-share" style="margin:0px 0px 10px 100px">
+<a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="default"> Tweet</a>
+</div>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 	
 
 <link rel="canonical"
@@ -160,7 +157,7 @@ Tweet</a>
 
 	else { %>
 	
-	<p>Share on Facebook: <div class="fb-like" data-href=<%=results[0].poster.replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
+	<p ALIGN=Center>Share on Facebook: <div class="fb-like" data-href=<%=results[0].poster.replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
 	
 	<a class="twitter-share-button"
 	  href="https://twitter.com/intent/tweet"
@@ -209,7 +206,7 @@ Tweet</a>
 			<div>
 				<textarea name="comments" id="comments" placeholder="Please comment<%= results[0].title.replace(/"/g, '') %> here!" style="font-family:sans-serif;font-size:1.2em; width: 1100px;"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>></button>
+			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>>Submit</button>
 		</form>
 				<% }
 				else { %>
@@ -217,7 +214,7 @@ Tweet</a>
 			<div>
 				<textarea name="comments" id="comments" placeholder="Please comment<%= results[0].title.replace(/"/g, '') %> here!" style="font-family:sans-serif;font-size:1.2em; width: 1100px;"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>></button>
+			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>>Submit</button>
 		</form>
 				<% } %>
       
