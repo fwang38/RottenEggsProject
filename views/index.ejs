@@ -216,7 +216,7 @@
 					<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
 						<% var poster=resultsperson[i].profile.replace(/"/g, "") %>
 						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'>
-						<button type="submit" class="btn btn-link" name="movieid" value = <%= resultsmovie[i].movie_id%> ><%= resultsperson[i].name.replace(/"/g, "")%></button></td>
+						<button type="submit" class="btn btn-link" name="personid" value = <%= resultsperson[i].personid%> ><%= resultsperson[i].name.replace(/"/g, "")%></button></td>
 						<% var s= resultsperson[i].biography.replace(/"/g, "") %>
 						<% if(s.length<5) {%>
 							<td> No Details</td> <% } else {%>
