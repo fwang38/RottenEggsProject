@@ -38,6 +38,13 @@
 						<% } %>
 					</ul>
 					
+					<form class="navbar-form navbar-left" role="search" id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get">
+        			<div class="form-group">
+          			<input type="text" class="form-control" name="movie" placeholder="Bing&RottenEggs">
+        			</div>
+        			<button type="submit" class="btn btn-primary">Search</button>
+      				</form>
+					
       			
 					<ul class="nav navbar-nav navbar-right">
 						<% if(user == null){ %>
@@ -103,10 +110,6 @@
 
 	<div class="navbar-default sidebar" role="navigation">
 		<div class="sidebar-nav navbar-collapse">
-			<form id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get" style="float:center">
-				<input type="text" name="movie">
-				<input type=image src="/image/search.jpg"  alt="..." style="width:30px;height:30px;">
-			</form>
 
 			<form id="typeSelectForm" name='selectGenre' action="/getGenre" method="get" style="float:center">
 				<div class="leftlist">
