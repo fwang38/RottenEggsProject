@@ -19,7 +19,7 @@ function generateResponse(req, res) {
 	  if (!err){
 	    console.log('The solution is: ', rows);
 	    results = rows.slice();
-	    res.render('persons.ejs', {results: results});
+	    res.render('persons.ejs', {results: results, user:req.user});
 	    console.log(results)
 	    //callback(results);
 	   	}
