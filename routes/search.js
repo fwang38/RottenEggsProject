@@ -47,6 +47,8 @@ function keywordMovie(req, res){
 		  }, function(error, results, body){
 		    console.log(body.d.results);		
 		    console.log("result!!!!!!");
+		    console.log(resultsmovie);
+		    console.log(resultsperson);
 			res.render('index',{results:null, bing:body.d.results, resultsmovie:resultsmovie, resultsperson:resultsperson, user:req.user});
 		});
 		
