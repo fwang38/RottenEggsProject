@@ -49,7 +49,7 @@ function keywordMovie(req, res){
 		    console.log("result!!!!!!");
 		    console.log(resultsmovie);
 		    console.log(resultsperson);
-			res.render('index',{results:null, bing:body.d.results, resultsmovie:resultsmovie, resultsperson:resultsperson, user:req.user});
+			res.render('index',{results:null,limitnum:12, bing:body.d.results,  recentvote:null, currentworst:null,resultsmovie:resultsmovie, resultsperson:resultsperson, user:req.user});
 		});
 		
 		

@@ -41,13 +41,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/homepage">RottenEggs</a>
+      <a class="navbar-brand" href="/">RottenEggs</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
+   <!--<li class="active"><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
@@ -60,14 +60,16 @@
             <li class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+      
+	  <form class="navbar-form navbar-left" role="search" id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get">
+      <div class="form-group">
+      <input type="text" class="form-control" name="movie" placeholder="Bing&RottenEggs">
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
       </form>
+      
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">Already have an account?</p></li>
         <li class="dropdown">
@@ -123,13 +125,9 @@
  	
  	</div>
  	<div class="col-md-5 col-md-offset-1">
- 		<p></p>
- 		<br>
- 		<br>
- 		<br>
- 		<p>Name: <%= results[0].name.replace(/"/g, '') %></p>
- 		<p>Date of Birth: <%= results[0].dayofbirth.replace(/"/g, '') %></p>
- 		<p>Biography: <%= results[0].biography.replace(/"/g, '') %></p>
+ 		<p style="font-size: 200%; font-family:verdana; text-align:center;"><%= results[0].name.replace(/"/g, '') %></p>
+ 		<p style="font-size: 150%;">Date of Birth: <%= results[0].dayofbirth.replace(/"/g, '') %></p>
+ 		<p style="font-size: 110%;">Biography: <%= results[0].biography.replace(/"/g, '') %></p>
  
 		<script>
 		  window.fbAsyncInit = function() {

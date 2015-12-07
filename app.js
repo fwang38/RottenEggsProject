@@ -18,6 +18,7 @@ var genres= require('./routes/genres');
 var search=require('./routes/search');
 var persons = require('./routes/persons');
 var profile = require('./routes/profile');
+var loadmore=require('./routes/loadmore');
 var app = express();
 
 var passport = require('passport');
@@ -79,6 +80,8 @@ app.get('/getGenre',genres.displayResponse);
 app.get('/getMovies',search.displayResponse);
 app.get('/addcomment',addcomment.displayResponse);
 app.get('/linktomovie',movies.displayResponse);
+app.get('/linktoperson',persons.displayResponse);
+app.get('/loadmore',loadmore.displayResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -49,7 +49,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
+   <!-- <li class="active"><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
@@ -62,13 +62,13 @@
             <li class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+      <form class="navbar-form navbar-left" role="search" id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get">
+      <div class="form-group">
+      <input type="text" class="form-control" name="movie" placeholder="Bing&RottenEggs">
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">Already have an account?</p></li>
@@ -144,13 +144,10 @@
 
 <% if (results[0].url != null) { %>
 
-<p>Share on Facebook: <div class="fb-like" data-href=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
-
-
-<a class="twitter-share-button"
-  href="https://twitter.com/intent/tweet"
-  data-size="default">
-Tweet</a>
+<p ALIGN=Center>Share on Facebook and Twitter: <div class="fb-like" data-href=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="margin:0px 0px 10px 100px"></div></p>
+<div class="tw-share" style="margin:0px 0px 10px 100px">
+<a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="default"> Tweet</a>
+</div>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 	
 
 <link rel="canonical"
@@ -160,12 +157,15 @@ Tweet</a>
 
 	else { %>
 	
-	<p>Share on Facebook: <div class="fb-like" data-href=<%=results[0].poster.replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
+	<p ALIGN=Center>Share on Facebook: <div class="fb-like" data-href=<%=results[0].poster.replace(/"/g, '')%> data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="margin:0px 0px 10px 100px"></div></p>
 	
+	<div class="tw-share" style="margin:0px 0px 10px 100px">
 	<a class="twitter-share-button"
 	  href="https://twitter.com/intent/tweet"
 	  data-size="default">
 	Tweet</a>
+	</div>
+	
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 	
 	
 	<link rel="canonical"
@@ -176,16 +176,16 @@ Tweet</a>
  </div>
  	<div class="col-md-5 col-md-offset-1">
  		<p></p>
- 		<p><%= results[0].title.replace(/"/g, '') %></p>
- 		<p>Released on <%= results[0].releasedate.replace(/"/g, '') %></p>		
- 		<p>IMDB Rating <%= results[0].userrating %></p>
+ 		<p style="font-family:verdana; text-align:center; font-size:200%;"><%= results[0].title.replace(/"/g, '') %></p>
+ 		<p style="font-size: 120%">Released on: <%= results[0].releasedate.replace(/"/g, '') %></p>		
+ 		<p style="font-size: 120%">IMDB Rating: <%= results[0].userrating %></p>
  		
  		<p id="imdbrating"></p>
  		
- 		<p>Rotten Tomotoes Rating: PLACEHOLDER FOR RT RATING</p>
- 		<p>Runtime: <%= results[0].runtime %> minutes</p>
+ 		<p style="font-size: 120%">Rotten Tomotoes Rating: PLACEHOLDER FOR RT RATING</p>
+ 		<p style="font-size: 120%">Runtime: <%= results[0].runtime %> minutes</p>
 
-    <p>Overview: <%= results[0].overview.replace(/"/g, '') %></p>
+    <p style="font-size: 120%">Overview: <%= results[0].overview.replace(/"/g, '') %></p>
  		<br>
  		
 <% if (results[0].url != null) { %>
@@ -209,7 +209,7 @@ Tweet</a>
 			<div>
 				<textarea name="comments" id="comments" placeholder="Please comment<%= results[0].title.replace(/"/g, '') %> here!" style="font-family:sans-serif;font-size:1.2em; width: 1100px;"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>></button>
+			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>>Submit</button>
 		</form>
 				<% }
 				else { %>
@@ -217,7 +217,7 @@ Tweet</a>
 			<div>
 				<textarea name="comments" id="comments" placeholder="Please comment<%= results[0].title.replace(/"/g, '') %> here!" style="font-family:sans-serif;font-size:1.2em; width: 1100px;"></textarea>
 			</div>
-			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>></button>
+			<button type="submit" class="btn btn-primary" name ="movieid" value=<%=results[0].movie_id %>>Submit</button>
 		</form>
 				<% } %>
       

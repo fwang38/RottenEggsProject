@@ -25,7 +25,7 @@ function generateBadmovies(req,res){
 			        result.push(rows[i]);
 			   }
 			  console.log(result);
-			    res.render('index',{results:result, resultsperson:null, resultsmovie:null, user:req.user});
+			    res.render('index',{results:result, bing:null, limitnum:12, recentvote:null, currentworst:null, resultsperson:null, resultsmovie:null, user:req.user});
 		  } 
 		  else
 		    console.log('Error while performing Query.');

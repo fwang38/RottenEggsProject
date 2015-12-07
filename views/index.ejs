@@ -20,7 +20,6 @@
 	<div class="container-fluid">
 		<div class="jumbotron">
 			<h1>Rotten Eggs</h1>
-			<p>...</p>
 		</div>
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
@@ -37,7 +36,15 @@
 						<li><a href="/profile"> Your Account</a></li> 
 						<% } %>
 					</ul>
-
+					
+					<form class="navbar-form navbar-left" role="search" id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get">
+        			<div class="form-group">
+          			<input type="text" class="form-control" name="movie" placeholder="Bing&RottenEggs">
+        			</div>
+        			<button type="submit" class="btn btn-primary">Search</button>
+      				</form>
+					
+      			
 					<ul class="nav navbar-nav navbar-right">
 						<% if(user == null){ %>
 						
@@ -102,10 +109,6 @@
 
 	<div class="navbar-default sidebar" role="navigation">
 		<div class="sidebar-nav navbar-collapse">
-			<form id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get" style="float:center">
-				<input type="text" name="movie">
-				<input type=image src="/image/search.jpg"  alt="..." style="width:30px;height:30px;">
-			</form>
 
 			<form id="typeSelectForm" name='selectGenre' action="/getGenre" method="get" style="float:center">
 				<div class="leftlist">
@@ -212,9 +215,10 @@
 			<tbody>
 				<% for(var i=0; i<resultsperson.length; i++) { %>
 				<tr>
-					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+					<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
 						<% var poster=resultsperson[i].profile.replace(/"/g, "") %>
-						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><a href="##" > <%= resultsperson[i].name.replace(/"/g, "")%></a></td>
+						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'>
+						<button type="submit" class="btn btn-link" name="personid" value = <%= resultsperson[i].personid%> ><%= resultsperson[i].name.replace(/"/g, "")%></button></td>
 						<% var s= resultsperson[i].biography.replace(/"/g, "") %>
 						<% if(s.length<5) {%>
 							<td> No Details</td> <% } else {%>
@@ -241,11 +245,11 @@
 	<% } 
 	else { %>
 	<% for(var i=0; i<results.length; i++) { %>
-	<% if(i%4==0 && i!=0) { %>
+	<% if(i%3==0 && i!=0) { %>
 </div>
 <% } %>	
 
-<% if(i%4==0) { %>
+<% if(i%3==0) { %>
 <div class="row">
 	<% } %>	
 	<div class="col-sm-6 col-md-3">
@@ -282,12 +286,20 @@
 	<% } %>
 </div>
 <% } %>	
+<form id="movieSelectForm" name='selectMovie' action="/loadmore" method="get" style="float:center">
+	<button type="submit" class="btn btn-primary" name="limitnum" value = <%=limitnum%> > Load more</button>
+</form>
+<br>
 
 
 <div class="container">
-	<% if( recentvote !=null) { %>
-	<h2>Recent Vote</h2>  
-	<table class="table">
+	<% if( recentvote !=null) { %> 
+	<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Recent Vote</div>
+
+  <!-- Table -->
+  <table class="table">
 		<thead>
 			<tr>
 				<th>Movie ID</th>
@@ -307,6 +319,8 @@
 			<% } %>
 		</tbody>
 	</table>
+</div>
+	
 	<% } %>
 
 	<% if( currentworst!=null ) { %>

@@ -1,9 +1,10 @@
 
 var mysql      = require('mysql');
-var personid   = 12;
+
 
 function generateResponse(req, res) {
 //	generateResponse(req, res);
+	var personid   = req.query.personid;
 	var results = [];
 	var connection = mysql.createConnection({
 	  host     : 'mydb.c31kdvhm3rfj.us-west-2.rds.amazonaws.com',
