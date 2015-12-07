@@ -14,7 +14,7 @@ function getResults(movie_id, db, callback) {
 		console.log("DOC"+ doc + doc != null);
 		if (doc != null){
 		if (doc.reviews != null) {
-			console.log("deded edudhiueahduiehaiuD" + doc.reviews);
+			
 			
 			for (i=0; i<doc.reviews.length; i++){
 				commentresult.push(doc.reviews[i]);
@@ -76,7 +76,7 @@ function generateResponse(req, res) {
 	});
 
 	connection.connect();
-	var q = "SELECT m.movie_id, mt.url, m.title, m.revenue, m.overview, m.poster, m.releasedate, m.runtime, m.vote from movie m LEFT JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id;
+	var q = "SELECT m.movie_id, mt.url, m.title, m.revenue, m.overview, m.poster, m.releasedate, m.runtime, m.vote, m.userrating from movie m LEFT JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id;
 	console.log(q);
 	connection.query(q, function(err, rows, fields) {
 	  if (!err){
