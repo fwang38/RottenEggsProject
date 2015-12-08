@@ -39,9 +39,18 @@ function generateResponse(req, res) {
 	console.log(q);
 	connection.query(q , function(err, rows, fields) {
 	if (!err){
-		  console.log('The solution is: ');		  
-		  var result=rows[0];
-	      var hi=rows[1];
+		  console.log('The solution is: ');	
+		  	console.log("aaaaaa");
+			console.log(rows[0]);
+			console.log("bbbbbbbb");
+			console.log(rows[1]);
+		if(req.user==null){
+			var result=rows;
+			var hi=null;
+		}else{
+			var result=rows[0];
+			var hi=rows[1];
+		}
 	      var hasvoted = [];
 	      if (hi != null) {
 	    	  for (var i in hi){
@@ -49,6 +58,8 @@ function generateResponse(req, res) {
 	    	  }
 	      }
 		  console.log(rows);
+		  console.log(req.user==null);
+		  
 		  res.render('index',{bing: null, results:result, limitnum:lim, hasvoted: hasvoted, recentvote: null, currentworst:null, resultsperson:null, resultsmovie:null, user:req.user});
 	} 
 	else
@@ -59,5 +70,8 @@ function generateResponse(req, res) {
 
 
 exports.displayResponse = function(req, res){
+	console.log("aaaaaaaaaaa");
+	console.log(req.query);
+	console.log("cccccccccccccc");
 	generateResponse(req, res);
 };

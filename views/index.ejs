@@ -241,21 +241,22 @@
 		<!--if results == null randomly return 10 bad movies here-->
 
 		<% if(results==null){ %>
+		<p>result null!!!!!!!!!!!!!!!!!</p>
 	</div>	
 	<% } 
 	else { %>
 	<% for(var i=0; i<results.length; i++) { %>
+
 	<% if(i%3==0 && i!=0) { %>
 </div>
 <% } %>	
-
 <% if(i%3==0) { %>
 <div class="row">
 	<% } %>	
 	<div class="col-sm-6 col-md-3">
 		<div class="thumbnail">
 			<% if(user == null){ %>
-			<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
+						<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
 				<% var poster=results[i].poster.replace(/"/g, "") %>
 				<input type=image src=<%= poster %>  name= "movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
 			</form>
@@ -263,8 +264,7 @@
 				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
 				<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
 			</form>
-			<% }
-			else { %>
+			<% } else { %>
 			<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
 				<% var poster=results[i].poster.replace(/"/g, "") %>
 				<input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
@@ -331,6 +331,7 @@
 				<th>Rank</th>
 				<th>Name</th>
 				<th>Votes</th>
+				<th>User Rating</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -340,6 +341,7 @@
 					<td><%= i+1 %></td>
 					<td><%= currentworst[i].title.replace(/"/g, "")%></td>
 					<td><%= currentworst[i].vote %></td>
+					<td><%= currentworst[i].userrating %></td>
 				</form>
 			</tr> 
 			<% } %>

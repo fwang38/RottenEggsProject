@@ -42,7 +42,7 @@ function generateResponse(req, res) {
 	});	
 
 	getResults(req, res, connection, function(results) {
-	res.render('vote.ejs');//, {results: results});
+	res.redirect('/');//, {results: results});
 	});
 
 	connection.end();
