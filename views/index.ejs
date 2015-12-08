@@ -38,13 +38,13 @@
 					</ul>
 					
 					<form class="navbar-form navbar-left" role="search" id="SelectMovies" name='moviesKeyword' action="/getMovies" method="get">
-        			<div class="form-group">
-          			<input type="text" class="form-control" name="movie" placeholder="Bing&RottenEggs">
-        			</div>
-        			<button type="submit" class="btn btn-primary">Search</button>
-      				</form>
+						<div class="form-group">
+							<input type="text" class="form-control" name="movie" placeholder="Bing&RottenEggs">
+						</div>
+						<button type="submit" class="btn btn-primary">Search</button>
+					</form>
 					
-      			
+					
 					<ul class="nav navbar-nav navbar-right">
 						<% if(user == null){ %>
 						
@@ -218,20 +218,126 @@
 					<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
 						<% var poster=resultsperson[i].profile.replace(/"/g, "") %>
 						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'>
-						<button type="submit" class="btn btn-link" name="personid" value = <%= resultsperson[i].personid%> ><%= resultsperson[i].name.replace(/"/g, "")%></button></td>
-						<% var s= resultsperson[i].biography.replace(/"/g, "") %>
-						<% if(s.length<5) {%>
+							<button type="submit" class="btn btn-link" name="personid" value = <%= resultsperson[i].personid%> ><%= resultsperson[i].name.replace(/"/g, "")%></button></td>
+							<% var s= resultsperson[i].biography.replace(/"/g, "") %>
+							<% if(s.length<5) {%>
 							<td> No Details</td> <% } else {%>
-						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'> <%= s %></td>
-						<% } %>
+							<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'> <%= s %></td>
+							<% } %>
+						</form>
+					</tr> 
+					<% } %>
+					<% for(var i=0; i<resultsmovie.length; i++) { %>
+					<tr>
+						<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
+							<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><button type="submit" class="btn btn-link" name="movieid" value = <%= resultsmovie[i].movie_id%> ><%= resultsmovie[i].title.replace(/"/g, "")%></button></td>
+							<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><%= resultsmovie[i].overview.replace(/"/g, "")%></td>
+						</form>
+					</tr> 
+					<% } %>
+				</tbody>
+			</table>
+			<% } %> <!--end of if-->
+			<!--if results == null randomly return 10 bad movies here-->
+
+			<% if(results==null){ %>
+			<p>result null!!!!!!!!!!!!!!!!!</p>
+		</div>	
+		<% } 
+		else { %>
+		<% for(var i=0; i<results.length; i++) { %>
+
+		<% if(i%3==0 && i!=0) { %>
+	</div>
+	<% } %>	
+	<% if(i%3==0) { %>
+	<div class="row">
+		<% } %>	
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<% if(user == null){ %>
+				<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
+					<% var poster=results[i].poster.replace(/"/g, "") %>
+					<input type=image src=<%= poster %>  name= "movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
+				</form>
+				<form id="movieSelectForm" name='selectMovie' action="/login" method="get" style="float:center">
+					<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
+					<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
+				</form>
+				<% } else { %>
+				<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
+					<% var poster=results[i].poster.replace(/"/g, "") %>
+					<input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
+				</form>
+				<% if(hasvoted.indexOf(results[i].movie_id)!= -1){ %>
+				<form id="movieSelectForm" name='selectMovie' action="/unvote" method="get" style="float:center">
+					<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
+					<button type="submit" class="btn btn-primary" name="movieid" value = <%= results[i].movie_id%> > Unvote</button>
+				</form>
+				<% }
+				else { %>
+				<form id="movieSelectForm" name='selectMovie' action="/vote" method="get" style="float:center">
+					<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
+					<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
+				</form>
+				<% } }%>
+			</div>
+		</div>
+		<% } %>
+	</div>
+	<% } %>	
+	<form id="movieSelectForm" name='selectMovie' action="/loadmore" method="get" style="float:center">
+		<button type="submit" class="btn btn-primary" name="limitnum" value = <%=limitnum%> > Load more</button>
+	</form>
+	<br>
+
+
+	<div class="container">
+		<% if( recentvote !=null) { %> 
+		<h2>Recent Vote</h2>
+		<!-- Table -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Movie ID</th>
+					<th>User ID</th>
+					<th>Timestamp</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(var i=0; i<recentvote.length; i++) { %>
+				<tr>
+					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+						<td><%= recentvote[i].movieid %></td>
+						<td><%= recentvote[i].userid %></td>
+						<td><%= recentvote[i].ts %></td>						
 					</form>
 				</tr> 
 				<% } %>
-				<% for(var i=0; i<resultsmovie.length; i++) { %>
+			</tbody>
+		</table>
+		
+		<% } %>
+
+		<% if( currentworst!=null ) { %>
+		<h2>Current Worst Movies</h2>
+		<table class="table">
+			<thead>
 				<tr>
-					<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
-						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><button type="submit" class="btn btn-link" name="movieid" value = <%= resultsmovie[i].movie_id%> ><%= resultsmovie[i].title.replace(/"/g, "")%></button></td>
-						<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><%= resultsmovie[i].overview.replace(/"/g, "")%></td>
+					<th>Rank</th>
+					<th>Name</th>
+					<th>Votes</th>
+					<th>User Rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(var i=0; i<currentworst.length; i++) { %>
+				<tr>
+					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
+						<td><%= i+1 %></td>
+						<td><%= currentworst[i].title.replace(/"/g, "")%></td>
+						<td><%= currentworst[i].vote %></td>
+						<td><%= currentworst[i].userrating %></td>
 					</form>
 				</tr> 
 				<% } %>
@@ -239,117 +345,7 @@
 		</table>
 		<% } %> <!--end of if-->
 		<!--if results == null randomly return 10 bad movies here-->
-
-		<% if(results==null){ %>
-		<p>result null!!!!!!!!!!!!!!!!!</p>
-	</div>	
-	<% } 
-	else { %>
-	<% for(var i=0; i<results.length; i++) { %>
-
-	<% if(i%3==0 && i!=0) { %>
-</div>
-<% } %>	
-<% if(i%3==0) { %>
-<div class="row">
-	<% } %>	
-	<div class="col-sm-6 col-md-3">
-		<div class="thumbnail">
-			<% if(user == null){ %>
-						<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
-				<% var poster=results[i].poster.replace(/"/g, "") %>
-				<input type=image src=<%= poster %>  name= "movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
-			</form>
-			<form id="movieSelectForm" name='selectMovie' action="/login" method="get" style="float:center">
-				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
-				<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
-			</form>
-			<% } else { %>
-			<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
-				<% var poster=results[i].poster.replace(/"/g, "") %>
-				<input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
-			</form>
-			<% if(hasvoted.indexOf(results[i].movie_id)!= -1){ %>
-			<form id="movieSelectForm" name='selectMovie' action="/unvote" method="get" style="float:center">
-				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
-				<button type="submit" class="btn btn-primary" name="movieid" value = <%= results[i].movie_id%> > Unvote</button>
-			</form>
-			<% }
-			else { %>
-			<form id="movieSelectForm" name='selectMovie' action="/vote" method="get" style="float:center">
-				<p id="overflow"><%= results[i].title.replace(/"/g, "")%></p>
-				<button type="submit" class="vote-button" name="movieid" value = <%= results[i].movie_id%> ></button>
-			</form>
-			<% } }%>
-		</div>
 	</div>
-	<% } %>
-</div>
-<% } %>	
-<form id="movieSelectForm" name='selectMovie' action="/loadmore" method="get" style="float:center">
-	<button type="submit" class="btn btn-primary" name="limitnum" value = <%=limitnum%> > Load more</button>
-</form>
-<br>
-
-
-<div class="container">
-	<% if( recentvote !=null) { %> 
-	<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Recent Vote</div>
-
-  <!-- Table -->
-  <table class="table">
-		<thead>
-			<tr>
-				<th>Movie ID</th>
-				<th>User ID</th>
-				<th>Timestamp</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% for(var i=0; i<recentvote.length; i++) { %>
-			<tr>
-				<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
-					<td><%= recentvote[i].movieid %></td>
-					<td><%= recentvote[i].userid %></td>
-					<td><%= recentvote[i].ts %></td>						
-				</form>
-			</tr> 
-			<% } %>
-		</tbody>
-	</table>
-</div>
-	
-	<% } %>
-
-	<% if( currentworst!=null ) { %>
-	<h2>Current Worst Movies</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Rank</th>
-				<th>Name</th>
-				<th>Votes</th>
-				<th>User Rating</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% for(var i=0; i<currentworst.length; i++) { %>
-			<tr>
-				<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
-					<td><%= i+1 %></td>
-					<td><%= currentworst[i].title.replace(/"/g, "")%></td>
-					<td><%= currentworst[i].vote %></td>
-					<td><%= currentworst[i].userrating %></td>
-				</form>
-			</tr> 
-			<% } %>
-		</tbody>
-	</table>
-	<% } %> <!--end of if-->
-	<!--if results == null randomly return 10 bad movies here-->
-</div>
 
 </div>
 <!-- /#page-wrapper -->
