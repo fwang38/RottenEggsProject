@@ -181,7 +181,10 @@
  		<p style="font-size: 120%">Released on: <%= results[0].releasedate.replace(/"/g, '') %></p>		
  		<p style="font-size: 120%">IMDB Rating: <%= results[0].userrating %></p>
  		
+ 		<% if (results_person.length != 0) { %>
  		<p style="font-size: 120%">Cast:
+ 		<% } %>
+ 		
  		<% for(i=0; i<results_person.length; i++) { %>
  		
  		<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
@@ -193,9 +196,12 @@
  		
  		<p id="imdbrating"></p>
  		
- 		<p style="font-size: 120%">RottenEggs Rating: PLACEHOLDER FOR RT RATING</p>
+ 		<p style="font-size: 120%">RottenEggs Rating: <b><%= results[0].rottenrating %> Provided by RottenEggs</b></p>
+ 		
+ 		<% if (results[0].runtime != 0) { %>
  		<p style="font-size: 120%">Runtime: <%= results[0].runtime %> minutes</p>
-
+		<% } %>
+		
     <p style="font-size: 120%">Overview: <%= results[0].overview.replace(/"/g, '') %></p>
  		<br>
  		

@@ -78,7 +78,7 @@ function generateResponse(req, res) {
 	});
 
 	connection.connect();
-	var q1 = "SELECT m.movie_id, mt.url, m.title, m.revenue, m.overview, m.poster, m.releasedate, m.runtime, m.vote, m.userrating from movie m LEFT JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id +";";
+	var q1 = "SELECT m.movie_id, mt.url, m.title, m.revenue, m.overview, m.poster, m.releasedate, m.runtime, m.vote, m.userrating, 10-((10*vote/(select MAX(vote) from movie))+(10-userrating))/2 AS rottenrating from movie m LEFT JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id +";";
 	var q2= "SELECT p.personid, p.name, mc.characters FROM personinfo p INNER JOIN movie_cast mc ON p.personid = mc.personid WHERE mc.movie_id =" + movie_id + " ORDER BY mc.orders LIMIT 5";
 	var q = q1 + q2;
 	console.log(q);
