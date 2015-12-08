@@ -15,7 +15,7 @@ function generateBadmovies(req,res){
 		  database : 'RottenEggs',
 		  multipleStatements: true
 		});
-		var q1='SELECT * from movie m, movie_genre mg where m.movie_id=mg.id and mg.genre = \''+ genre+'\' limit 15;';
+		var q1='SELECT * from movie m, movie_genre mg where m.movie_id=mg.id and mg.genre = \''+ genre+'\' order by m.releasedate desc limit 15;';
 		if (req.user != null) {
 			var q4='SELECT movie_id from votes v, movie m where v.userid =\''+ req.user.id +'\' and v.movieid=m.movie_id'
 		}
