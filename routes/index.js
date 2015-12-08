@@ -26,7 +26,7 @@ function generateResponse(req, res) {
 	
 	var q1='select * from movie order by releasedate desc limit 12;';
 	var q2='select * from votes order by ts desc limit 10;';
-	var q3='select * from movie order by vote desc limit 10;';
+	var q3='select * from movie order by ((10*vote/(select MAX(vote) from movie))+(10-userrating)) desc limit 10;';
 //	console.log(req.user !=null);
 	if (req.user != null) {
 		var q4='SELECT movie_id from votes v, movie m where v.userid =\''+ req.user.id +'\' and v.movieid=m.movie_id'
