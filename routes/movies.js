@@ -68,21 +68,26 @@ function generateResponse(req, res) {
 	console.log('aa');
 //	generateResponse(req, res);
 	var results = [];
+	var results_person = [];
 	var connection = mysql.createConnection({
 	  host     : 'mydb.c31kdvhm3rfj.us-west-2.rds.amazonaws.com',
 	  user     : 'boliu',
 	  password : 'liubo1678',
-	  database : 'RottenEggs'
+	  database : 'RottenEggs',
+	  multipleStatements: true  
 	});
 
 	connection.connect();
-	var q = "SELECT m.movie_id, mt.url, m.title, m.revenue, m.overview, m.poster, m.releasedate, m.runtime, m.vote, m.userrating from movie m LEFT JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id;
+	var q1 = "SELECT m.movie_id, mt.url, m.title, m.revenue, m.overview, m.poster, m.releasedate, m.runtime, m.vote, m.userrating from movie m LEFT JOIN movie_trailer mt ON mt.movie_id = m.movie_id WHERE m.movie_id =" + movie_id +";";
+	var q2= "SELECT p.personid, p.name, mc.characters FROM personinfo p INNER JOIN movie_cast mc ON p.personid = mc.personid WHERE mc.movie_id =" + movie_id + " ORDER BY mc.orders LIMIT 5";
+	var q = q1 + q2;
 	console.log(q);
 	connection.query(q, function(err, rows, fields) {
 	  if (!err){
 	    console.log('The solution is: ', rows);
-	    results = rows.slice();
-	    
+	    //results = rows.slice();
+	    results = rows[0];
+	    results_person = rows[1];
 	    generateResponse2(movie_id, req, res, function(commentresult) {
 			//db.close();
 			//results = commentresult;
@@ -90,7 +95,7 @@ function generateResponse(req, res) {
 			//res.render('movies.ejs', {results: results});
 	    	console.log(results)
 	    	console.log(commentresult)
-			res.render('movies.ejs', {results: results, commentresult: commentresult, user:req.user});
+			res.render('movies.ejs', {results: results, results_person: results_person, commentresult: commentresult, user:req.user});
 		});
 	   	}
 	  

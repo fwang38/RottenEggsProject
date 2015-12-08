@@ -181,9 +181,19 @@
  		<p style="font-size: 120%">Released on: <%= results[0].releasedate.replace(/"/g, '') %></p>		
  		<p style="font-size: 120%">IMDB Rating: <%= results[0].userrating %></p>
  		
+ 		<p style="font-size: 120%">Cast:
+ 		<% for(i=0; i<results_person.length; i++) { %>
+ 		
+ 		<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
+		<button type="submit" class="btn btn-link" name="personid" value = <%= results_person[i].personid %> ><%= results_person[i].name.replace(/"/g, "")%></button>
+		</form>
+ 		
+ 		<% } %>
+ 		</p>
+ 		
  		<p id="imdbrating"></p>
  		
- 		<p style="font-size: 120%">Rotten Tomotoes Rating: PLACEHOLDER FOR RT RATING</p>
+ 		<p style="font-size: 120%">RottenEggs Rating: PLACEHOLDER FOR RT RATING</p>
  		<p style="font-size: 120%">Runtime: <%= results[0].runtime %> minutes</p>
 
     <p style="font-size: 120%">Overview: <%= results[0].overview.replace(/"/g, '') %></p>
