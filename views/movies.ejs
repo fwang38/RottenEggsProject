@@ -149,6 +149,7 @@
 <div class="tw-share" style="margin:0px 0px 10px 100px">
 <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="default"> Tweet</a>
 </div>
+
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 	
 
 <link rel="canonical"
@@ -166,7 +167,7 @@
 	  data-size="default">
 	Tweet</a>
 	</div>
-	
+
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 	
 	
 	<link rel="canonical"
@@ -174,6 +175,20 @@
  	
 <% } %>
  	
+<% if(user == null){ %>
+		<form id="movieSelectForm" name='selectMovie' action="/login" method="get" style="float:center">
+			<p text-align:center;><button type="submit" class="vote-button" name="movieid" value = <%= results[0].movie_id%> ></button></p>
+		</form>
+<% } else { %>
+		<% if(hasvoted.indexOf(results[0].movie_id)!= -1){ %>
+		<form id="movieSelectForm" name='selectMovie' action="/unvote" method="get" style="float:center">
+			<p text-align:center;><button type="submit" class="btn btn-primary" name="movieid" value = <%= results[0].movie_id%> >Unvote</button></p>
+		</form>
+		<% } else { %>
+				<form id="movieSelectForm" name='selectMovie' action="/movievote" method="get" style="float:center">
+					<p text-align:center;><button type="submit" class="vote-button" name="movieid" value = <%= results[0].movie_id%> ></button></p>
+				</form>
+<% } }%>
  </div>
  	<div class="col-md-5 col-md-offset-1">
  		<p></p>

@@ -19,6 +19,7 @@ var search=require('./routes/search');
 var persons = require('./routes/persons');
 var profile = require('./routes/profile');
 var loadmore=require('./routes/loadmore');
+var movievote=require('./routes/movievote');
 var app = express();
 
 var passport = require('passport');
@@ -82,6 +83,7 @@ app.get('/addcomment',addcomment.displayResponse);
 app.get('/linktomovie',movies.displayResponse);
 app.get('/linktoperson',persons.displayResponse);
 app.get('/loadmore',loadmore.displayResponse);
+app.get('/movievote',movievote.displayResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

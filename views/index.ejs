@@ -240,6 +240,73 @@
 			<% } %> <!--end of if-->
 			<!--if results == null randomly return 10 bad movies here-->
 
+
+
+
+			<% if( currentworst!=null ) { %>
+<!-- caroulse start -->
+<h2>Current Worst Movies</h2>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+    	<div class="row">
+    	<%for(var i=0;i<5;i++){%>
+    		<div class="col-sm-2"><form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
+			<% var poster=currentworst[i].poster.replace(/"/g, "") %>
+			<input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
+			<p>Rank:<%= i+1 %><p>
+			<p>Title:<%= currentworst[i].title.replace(/"/g, "")%></p>
+			<p>Vote:<%= currentworst[i].vote %></p>
+			<p>User rating:<%= currentworst[i].userrating %></p>
+		</form></div>
+    	<%}%>
+		</div>
+    </div>
+
+    <div class="item">
+    	<div class="row">
+    	<%for(var i=5;i<10;i++){%>
+    		<div class="col-sm-2"><form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
+			<% var poster=currentworst[i].poster.replace(/"/g, "") %>
+			<input type=image src=<%= poster %> name="movieid" alt="..." style="width:160px;height:228px;" value= <%= results[i].movie_id%> >
+			<p>Rank:<%= i+1 %><p>
+			<p>Title:<%= currentworst[i].title.replace(/"/g, "")%></p>
+			<p>Vote:<%= currentworst[i].vote %></p>
+			<p>User rating:<%= currentworst[i].userrating %></p>
+		</form></div>
+    	<%}%>
+		</div>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!-- caroulse end -->
+		<% } %> <!--end of if-->
+
+
+
+
+
+
+
+			
 			<% if(results==null){ %>
 		</div>	
 		<% } 
@@ -318,31 +385,7 @@
 		
 		<% } %>
 
-		<% if( currentworst!=null ) { %>
-		<h2>Current Worst Movies</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Rank</th>
-					<th>Name</th>
-					<th>Votes</th>
-					<th>User Rating</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% for(var i=0; i<currentworst.length; i++) { %>
-				<tr>
-					<form id="movieSelectForm" name='selectMovie' action="/getMovie" method="get" style="float:center">
-						<td><%= i+1 %></td>
-						<td><%= currentworst[i].title.replace(/"/g, "")%></td>
-						<td><%= currentworst[i].vote %></td>
-						<td><%= currentworst[i].userrating %></td>
-					</form>
-				</tr> 
-				<% } %>
-			</tbody>
-		</table>
-		<% } %> <!--end of if-->
+		
 		<!--if results == null randomly return 10 bad movies here-->
 	</div>
 
