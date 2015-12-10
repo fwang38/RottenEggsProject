@@ -257,6 +257,7 @@
   <div class="carousel-inner" role="listbox">
     <div class="item active">
     	<div class="row">
+    	<div class="col-sm-1"></div>
     	<%for(var i=0;i<5;i++){%>
     		<div class="col-sm-2"><form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
 			<% var poster=currentworst[i].poster.replace(/"/g, "") %>
@@ -306,7 +307,7 @@
 
 
 
-			
+
 			<% if(results==null){ %>
 		</div>	
 		<% } 
