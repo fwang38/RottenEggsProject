@@ -185,7 +185,7 @@
 		<% if(hasvoted.indexOf(results[0].movie_id)!= -1){ %>
 		<form id="movieSelectForm" name='selectMovie' action="/unvote" method="get" style="float:center">
 			<button type="submit" class="btn btn-primary" name="movieid" value = <%= results[0].movie_id%> >Unvote</button>
-		</form>
+		</form> 
 		<% } else { %>
 				<form id="movieSelectForm" name='selectMovie' action="/movievote" method="get" style="float:center">
 					<button type="submit" class="vote-button" name="movieid" value = <%= results[0].movie_id%> ></button>
@@ -197,19 +197,20 @@
  	<div class="col-md-5 col-md-offset-1">
  		<p></p>
  		<p style="font-family:verdana; text-align:center; font-size:200%;"><%= results[0].title.replace(/"/g, '') %></p>
- 		<p style="font-size: 120%">Released on: <%= results[0].releasedate.replace(/"/g, '') %></p>		
+ 		<% if (results[0].releasedate !== null) { %>
+ 			<p style="font-size: 120%">Released on: <%= results[0].releasedate.replace(/"/g, '') %></p>		
+ 		<% } %>
+ 		
  		<p style="font-size: 120%">IMDB Rating: <%= results[0].userrating %></p>
  		
  		<% if (results_person.length != 0) { %>
- 		<p style="font-size: 120%">Cast:
+ 			<p style="font-size: 120%">Cast:
  		<% } %>
  		
  		<% for(i=0; i<results_person.length; i++) { %>
- 		
- 		<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
-		<button type="submit" class="btn btn-link" name="personid" value = <%= results_person[i].personid %> ><%= (i+1).toString() + "." + results_person[i].name.replace(/"/g, "")%></button>
-		</form>
- 		
+ 			<form id="movieSelectForm" name='selectMovie' action="/linktoperson" method="get" style="float:center">
+			<button type="submit" class="btn btn-link" name="personid" value = <%= results_person[i].personid %> ><%= (i+1).toString() + "." + results_person[i].name.replace(/"/g, "")%></button>
+			</form>
  		<% } %>
  		</p>
  		
@@ -217,17 +218,18 @@
  		
  		<p style="font-size: 120%">RottenEggs Rating: <b><%= results[0].rottenrating %> Provided by RottenEggs</b></p>
  		
- 		<% if (results[0].runtime != 0) { %>
- 		<p style="font-size: 120%">Runtime: <%= results[0].runtime %> minutes</p>
+ 		<% if (results[0].runtime !== null) { %>
+ 			<p style="font-size: 120%">Runtime: <%= results[0].runtime %> minutes</p>
 		<% } %>
-		
-    <p style="font-size: 120%">Overview: <%= results[0].overview.replace(/"/g, '') %></p>
+		<% if (results[0].overview !== null) { %>	
+    		<p style="font-size: 120%">Overview: <%= results[0].overview.replace(/"/g, '') %></p>
+ 		<% } %>
+ 		
  		<br>
  		
-<% if (results[0].url != null) { %>
-
- 		<iframe id ="video" src=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> height="300" width="450" allowfullscreen="" frameborder="0" class="embed-responsive-item"></iframe>
-<% } %>
+		<% if (results[0].url != null) { %>
+ 			<iframe id ="video" src=<%= "http://www.youtube.com/embed/"+ results[0].url.substring(results[0].url.indexOf('=')+1).replace(/"/g, '')%> height="300" width="450" allowfullscreen="" frameborder="0" class="embed-responsive-item"></iframe>
+		<% } %>
 
  	</div>   
 </div>

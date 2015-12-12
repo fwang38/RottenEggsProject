@@ -233,7 +233,12 @@
 					<tr>
 						<form id="movielinkform" name='linktomovie' action="/linktomovie" method="get" style="float:center">
 							<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><button type="submit" class="btn btn-link" name="movieid" value = <%= resultsmovie[i].movie_id%> ><%= resultsmovie[i].title.replace(/"/g, "")%></button></td>
-							<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><%= resultsmovie[i].overview.replace(/"/g, "")%></td>
+							<% if (resultsmovie[i].overview !== null) { %>
+								<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'><%= resultsmovie[i].overview.replace(/"/g, "")%></td>
+							<% } else{%>
+								<td style='text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'>NOT FOUND!</td>
+							<% } %>
+							
 						</form>
 					</tr> 
 					<% } %>
